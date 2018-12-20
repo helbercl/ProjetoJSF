@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Primeiro Projeto JSF</title>
+</h:head>
+<h:body>
+	<h:form>
+			<h:panelGrid>
+			
+                <h:outputLabel for="ipt_login" value="Nome"/>
+				<h:inputText id="ipt_login" value="#{olamundo.name}"  />
+				
+				<h:commandButton id="cmb_record" value="Record" 
+				action="#{olamundo.impress}" rendered="not empty #{ipt_login}" 
+				title="Gravar"/>
+				
+				<h:commandButton id="cmb_clean" value="Clean" />
+				
+				<h:outputText value="#{olamundo.resposta}"/>	
+							
+			</h:panelGrid>	
+	</h:form>
+</h:body>
+</html>
