@@ -7,21 +7,23 @@
 	<title>Primeiro Projeto JSF</title>
 </h:head>
 <h:body>
-	<h:form>
-			<h:panelGrid>
+	<h:form id="frm_login" style="align:center">
+	   <h:panelGrid columns="2" >
+			<h:outputLabel for="ipt_login" value="Login:" />
+			<h:inputText id="ipt_login" value="#{olamundo.login}" binding="#{olamundo.ipt_login}"/>
+			<h:outputLabel for="ipt_password" value="Senha :" />
+			<h:inputSecret id="ipt_password" value="#{olamundo.password}" binding="#{olamundo.ipt_password}" />
 			
-                <h:outputLabel for="ipt_login" value="Nome"/>
-				<h:inputText id="ipt_login" value="#{olamundo.name}"  />
-				
-				<h:commandButton id="cmb_record" value="Record" 
-				action="#{olamundo.impress}" rendered="not empty #{ipt_login}" 
-				title="Gravar"/>
-				
-				<h:commandButton id="cmb_clean" value="Clean" />
-				
-				<h:outputText value="#{olamundo.resposta}"/>	
-							
-			</h:panelGrid>	
+			<!-- a propriedade binding faz amarração entre o xhtml e backingbean usando o tipo de dado
+			na classe de acordo com o tipo de componente -->
+			
+			<h:commandButton id="cmb_record" value="Record"
+				action="#{olamundo.impress}" title="Gravar" binding="#{olamundo.botao}" />
+			
+			
+			<h:outputText value="#{olamundo.resposta}"	rendered="#{not empty olamundo.resposta}" />
+			<h:commandButton id="cmb_clean" value="Clean" 	action="#{olamundo.clean}" />
+     </h:panelGrid>
 	</h:form>
 </h:body>
 </html>
