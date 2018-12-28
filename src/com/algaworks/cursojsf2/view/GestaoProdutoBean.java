@@ -25,7 +25,7 @@ import com.algaworks.cursojsf2.model.Produto;
  *objetos com escopo longo podem precisar ser serializados - Serialização escreve o estado atual do objeto em bytes
  *para possivel transmissão por rede.
  * */
-//@ViewScoped 
+@ViewScoped 
 /* Tempo de vida menor que sessão. 
 SessionScoped (inicio da sessão ate parar de usar o sistema ou a sessão expirar(Longo)
 o viewscoped dura enquanto a tela está sendo utilizada(tempo mais curto e sem compartilhar dados) - 
@@ -33,7 +33,7 @@ não compartilha dados de outros usuarios- mas é um escopo de tela.
 */
 //@RequestScoped 
 /*Escopo padrão caso não informe.A cada requisição é inicializado e fechado o tempo de vida ..Muito curto*/
-@NoneScoped
+//@NoneScoped
 /*Não tem tempo de vida nenhum. Por demanda. Menos usado.*/
 public class GestaoProdutoBean implements Serializable{
  
@@ -41,6 +41,7 @@ public class GestaoProdutoBean implements Serializable{
 	
 	private Produto produto ;
 	private List<Produto> produtos;
+	
 	
 	public GestaoProdutoBean() {
 		this.produtos = new ArrayList<Produto>();
@@ -60,14 +61,14 @@ public class GestaoProdutoBean implements Serializable{
 	public void setProdutos(List<Produto> produtos) {
 		this.produtos = produtos;
 	}
-    @PostConstruct // chama o metodo após construtor do objeto - inicializar algum recurso
-	public void inicializar() {
-		System.out.println("Inicializou bean");
-	}
-    @PreDestroy //o metodo será chamado momentos antes de um managed bean ser distruido .. Objeto ser removido.
-    public void finalizar() {
-    	System.out.println("Finalizando Bean!");
-    }
+//    @PostConstruct // chama o metodo após construtor do objeto - inicializar algum recurso
+//	public void inicializar() {
+//		System.out.println("Inicializou bean");
+//	}
+//    @PreDestroy //o metodo será chamado momentos antes de um managed bean ser distruido .. Objeto ser removido.
+//    public void finalizar() {
+//    	System.out.println("Finalizando Bean!");
+//    }
 
 
 
