@@ -1,47 +1,99 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
- xmlns:h="http://java.sun.com/jsf/html"
- xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Escopo Aplicação e SessãoGestãoProdutos</title>
 </head>
 <body>
- <h:form style="align:center">
-    Nome  :
-    <h:inputText value="#{gestaoproduto.produto.nome}" />
-    <br></br>
-    Fabricante:
-    <h:inputText value="#{gestaoproduto.produto.fabricante}" />
-    <br></br>
-    Categoria:
-    <h:inputText value="#{gestaoproduto.produto.categoria}"/>
-    <br></br>
-    <h:commandButton value="Incluir" action="#{gestaoproduto.incluir}"/>
-    <br></br>
-     <br></br>
-    <h:dataTable var="produtos" value="#{gestaoproduto.produtos}" 
-    rendered="#{ not empty gestaoproduto.produtos}" bgcolor="Gray" border="1">
-      <h:column>
-        <f:facet name="header">
-          <h:outputText value="Nome"/>
-        </f:facet>
-         <h:outputText value="#{produtos.nome}"/>
-      </h:column>   
-      <h:column>
-         <f:facet name="header">
-           <h:outputText value="Fabricante"/>
-         </f:facet>
-         <h:outputText value="#{produtos.fabricante}"/>
-      </h:column> 
-      <h:column>
-        <f:facet name="header">
-          <h:outputText value="Categoria"/>
-        </f:facet>
-        <h:outputText value="#{produtos.categoria}"/>
-      </h:column>
-    </h:dataTable>
- </h:form>
+	<h:form id="frm_cadastro_produtos">
+	<h:commandLink id="cml_ajuda" valeu="Ajuda" action="help/help?faces-redirect=true">
+	     <f:actionListener binding="RegistroCliqueBotaoListener" />
+	</h:commandLink>
+
+		<h:panelGroup id="pngroup_cadastro_produtos">
+			<h:panelGrid id="pngrid_cadastro_produtos" border="1">
+                   Nome  :
+                   <h:inputText value="#{gestaoproduto.produto.nome}" />
+				
+                   Fabricante:
+                   <h:inputText
+					value="#{gestaoproduto.produto.fabricante}" />
+			
+                   Categoria:
+                   <h:inputText
+					value="#{gestaoproduto.produto.categoria}" />
+
+				<h:commandButton id="cmb_include" value="Incluir"
+					action="#{gestaoproduto.incluir}"
+					actionListener="#{gestaoproduto.verificarInclusao}" />
+
+			</h:panelGrid>
+		</h:panelGroup>
+	</h:form>
+
+	<h:form id="frm_pesquisar_produtos">
+		<h:panelGrid>
+			<h:panelGroup>
+
+				<!-- propriedade valueChangeListener faz um link/amarração com metodo que será chamado quando  
+				    houver modificações de valor no campo inputext   -->
+
+				<h:inputText value="#{gestaoproduto.fabricantePesquisar}"
+					valueChangeListener="#{gestaoproduto.fabricantePesquisaAlterado}" />
+				<h:commandButton value="Pesquisar"
+					action="#{gestaoproduto.pesquisar}" />
+			</h:panelGroup>
+		</h:panelGrid>
+	</h:form>
+
+	<h:form id="frm_listar_produtos">
+		<h:dataTable var="produtos" value="#{gestaoproduto.produtos}"
+			rendered="#{ not empty gestaoproduto.produtos}" bgcolor="Gray"
+			border="1" title="Lista de Produtos">
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Nome" />
+				</f:facet>
+				<h:outputText value="#{produtos.nome}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Fabricante" />
+				</f:facet>
+				<h:outputText value="#{produtos.fabricante}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Categoria" />
+				</f:facet>
+				<h:outputText value="#{produtos.categoria}" />
+			</h:column>
+		</h:dataTable>
+	</h:form>
+
+	<h:form id="frm_lista_log">
+		<h:dataTable var="logs" value="#{gestaoproduto.eventos}"
+			rendered="#{not empty gestaoproduto.eventos}" bgcolor="grey"
+			border="1" title="Lista Logs">
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Data Evento" />
+				</f:facet>
+              <h:outputText value="#{logs.dataEvento}" />
+			</h:column>
+			<h:column>
+			  <f:facet name="header">
+			    <h:outputText value="Componente Utilizado"/>
+			  </f:facet>
+			  <h:outputText value="#{logs.metodo}"/>
+			</h:column>
+
+		</h:dataTable>
+	</h:form>
+
+
 </body>
 </html>

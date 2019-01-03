@@ -9,6 +9,8 @@
 </head>
 <body>
 	<h:form id="frm_catalogo_livros">
+	<h:commandLink value="Ajuda" action="help/help?faces-redirect=true"/><br></br>
+	<h:commandLink value="Ajuda Redirect Classe" action="#{catalogolivros.obterAjuda}"/>
 		<h:panelGrid columns="2">
 			<h:column>
 				<h:outputLabel for="ipt_titulo" value="Titulo :" />

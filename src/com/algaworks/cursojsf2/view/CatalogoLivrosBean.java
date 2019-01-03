@@ -1,6 +1,7 @@
 package com.algaworks.cursojsf2.view;
 
 import java.io.Serializable;
+import java.lang.ProcessBuilder.Redirect;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -14,11 +15,12 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 
 import com.algaworks.cursojsf2.model.Livros;
+import com.sun.org.apache.regexp.internal.recompile;
 
 @ManagedBean(name = "catalogolivros")
 //@RequestScoped
-//@SessionScoped
-@ViewScoped
+@SessionScoped
+//@ViewScoped
 //@ApplicationScoped
 //@NoneScoped
 
@@ -38,10 +40,21 @@ public class CatalogoLivrosBean implements Serializable {
 		this.livros.add(this.livro);
 		this.livro = new Livros();
 	}
+
+	public String obterAjuda() {
+		if (this.livros.isEmpty()) {
+			return "help/help?faces-redirect=true";
+		} else {
+			return "help/help_phone?faces-redirect=true";
+		}
+
+	}
+
 	@PostConstruct
 	public void inicializar() {
 		System.out.println("Inicializando as " + new Date().getTime());
 	}
+
 	@PreDestroy
 	public void finalizar() {
 		System.out.println("Finalizando as " + new Date().getTime());
