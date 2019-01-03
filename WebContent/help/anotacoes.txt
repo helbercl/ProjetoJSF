@@ -1,0 +1,27 @@
+Quando não definimos o escopo por padrão é definido o @RequestScoped assim o objeto é substituido.
+ O tempo de vida do request é uma requisição. Cada clique em um botão , por exemplo, é uma requisição.*/
+
+@ApplicationScoped 
+-- escopo de aplicação - compartilha dados - é por aplicação .
+
+@SessionScoped 
+escopo de sessão - por usuario- não compartilha dados - tem tempo de timeout - cada usuario tem seus dados*
+
+
+*Novos escopos - view , request e none
+ 
+ objetos com escopo longo podem precisar ser serializados - Serialização escreve o estado atual do objeto em bytes
+ para possivel transmissão por rede.
+ 
+ 
+@SessionScoped (inicio da sessão ate parar de usar o sistema ou a sessão expirar(Longo)
+
+@Viewscoped dura enquanto a tela está sendo utilizada(tempo mais curto e sem compartilhar dados) - 
+não compartilha dados de outros usuarios- mas é um escopo de tela.
+
+@RequestScoped 
+ 
+Escopo padrão caso não informe.A cada requisição é inicializado e fechado o tempo de vida ..Muito curto*/
+
+@NoneScoped
+Não tem tempo de vida nenhum. Por demanda. Menos usado.*/
