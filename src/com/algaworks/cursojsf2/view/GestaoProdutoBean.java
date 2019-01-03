@@ -5,71 +5,61 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
-import javax.faces.bean.ApplicationScoped;
+
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.NoneScoped;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.ValueChangeEvent;
 
 import com.algaworks.cursojsf2.model.Produto;
 
-/*Quando não definimos o escopo por padrão é definido o @RequestScoped assim o objeto é substituido.
- O tempo de vida do request � uma requisição. Cada clique em um botão , por exemplo, é uma requisição.*/
-
-//@ApplicationScoped //escopo de aplicação - compartilha dados - é por aplicação .
-//@SessionScoped /*escopo de sessão - por usuario- não compartilha dados - tem tempo de timeout - cada usuario tem seus dados*/
-/*Novos escopos - view , request e none 
- *objetos com escopo longo podem precisar ser serializados - Serialização escreve o estado atual do objeto em bytes
- *para possivel transmissão por rede.
- * */
-
-/* Tempo de vida menor que sessão. 
-SessionScoped (inicio da sessão ate parar de usar o sistema ou a sessão expirar(Longo)
-o viewscoped dura enquanto a tela está sendo utilizada(tempo mais curto e sem compartilhar dados) - 
-não compartilha dados de outros usuarios- mas é um escopo de tela.
-*/
-//@RequestScoped 
-/*Escopo padrão caso não informe.A cada requisição é inicializado e fechado o tempo de vida ..Muito curto*/
-//@NoneScoped
-/*Não tem tempo de vida nenhum. Por demanda. Menos usado.*/
 @ManagedBean(name = "gestaoproduto")
-@ViewScoped
+@SessionScoped
 public class GestaoProdutoBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	private Produto produto;
-	private List<Produto> produtos;
+	private List<Produto> listProdutos;
 	private String fabricantePesquisar;
-	private Log eventos;
-	private List<Log> logs;
+	private Log log;
+	private List<Log> listLogs;
 
 	public GestaoProdutoBean() {
-		this.produtos = new ArrayList<Produto>();
+		this.listProdutos = new ArrayList<Produto>();		
+		this.listLogs = new ArrayList<Log>();	
 		this.produto = new Produto();
-		this.logs = new ArrayList<Log>();
+		this.log = new Log();
 	}
 
-	public void incluir() {
-		this.produtos.add(this.produto);
-		this.produto = new Produto();
+	public void incluir() {		
+		validarCampo();
+		this.listProdutos.add(this.produto);		
 	}
-	
+
+	public void clean() {
+		this.produto = new Produto();
+		this.log = new Log();
+	}
 	public void verificarInclusao(ActionEvent event) {
-		
+          validarCampo();
+          logarAcoes(event);
+   	}
+	
+	public void logarAcoes(ActionEvent event) {
+		log.setDataEvento(new Date());
+		log.setMetodo(event.getComponent().getId());
+		log.setComponente(event.getComponent().toString());
+		listLogs.add(log);
+		this.log = new Log();
+	}
+
+	private void validarCampo() {
 		System.out.println("Verificando ..");
 		if ("".equals(this.produto.getFabricante())) {
 			System.out.println("Incluindo ..");
-			this.produto.setFabricante("Sem Fabricate");
+			this.produto.setFabricante("Sem Fabricante");
 		}
-		eventos.setDataEvento(new Date());
-		eventos.setMetodo(event.getComponent().getId());
-		logs.add(eventos);
 	}
 
 	public void pesquisar() {
@@ -77,7 +67,7 @@ public class GestaoProdutoBean implements Serializable {
 	}
 
 	public void fabricantePesquisaAlterado(ValueChangeEvent event) {
-        if (this.produto.getFabricante().equalsIgnoreCase("")) {
+		if (this.produto.getFabricante().equalsIgnoreCase("")) {
 			this.produto.setFabricante("Sem Fabricante");
 		}
 		this.fabricantePesquisar = event.getNewValue().toString();
@@ -87,13 +77,7 @@ public class GestaoProdutoBean implements Serializable {
 		return produto;
 	}
 
-	public List<Produto> getProdutos() {
-		return produtos;
-	}
-
-	public void setProdutos(List<Produto> produtos) {
-		this.produtos = produtos;
-	}
+	
 
 //    @PostConstruct // chama o metodo após construtor do objeto - inicializar algum recurso
 //	public void inicializar() {
@@ -111,12 +95,29 @@ public class GestaoProdutoBean implements Serializable {
 		this.fabricantePesquisar = fabricante;
 	}
 
-	public Log getEventos() {
-		return eventos;
+	public Log getLog() {
+		return log;
 	}
 
-	public void setEventos(Log eventos) {
-		this.eventos = eventos;
+	public void setLog(Log log) {
+		this.log = log;
 	}
 
+	public List<Produto> getListProdutos() {
+		return listProdutos;
+	}
+
+	public void setListProdutos(List<Produto> listProdutos) {
+		this.listProdutos = listProdutos;
+	}
+
+	public List<Log> getListLogs() {
+		return listLogs;
+	}
+
+	public void setListLogs(List<Log> listLogs) {
+		this.listLogs = listLogs;
+	}
+
+	
 }

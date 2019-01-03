@@ -5,12 +5,10 @@ import java.util.Date;
 
 public class Log implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private String metodo;
 	private Date dataEvento;
+	private String componente;
 
 	public String getMetodo() {
 		return metodo;
@@ -23,6 +21,12 @@ public class Log implements Serializable {
 	}
 	public void setDataEvento(Date dataEvento) {
 		this.dataEvento = dataEvento;
+	}
+	public String getComponente() {
+		return componente;
+	}
+	public void setComponente(String componente) {
+		this.componente = componente;
 	}
 
 }
