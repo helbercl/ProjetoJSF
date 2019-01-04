@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.event.ActionEvent;
@@ -24,28 +23,37 @@ public class GestaoProdutoBean implements Serializable {
 	private String fabricantePesquisar;
 	private Log log;
 	private List<Log> listLogs;
+	private Produto produtoSelecionado;
+	private Log logSelecionado;
 
 	public GestaoProdutoBean() {
-		this.listProdutos = new ArrayList<Produto>();		
-		this.listLogs = new ArrayList<Log>();	
+		this.listProdutos = new ArrayList<Produto>();
+		this.listLogs = new ArrayList<Log>();
 		this.produto = new Produto();
 		this.log = new Log();
 	}
 
-	public void incluir() {		
+	public void incluir() {
 		validarCampo();
-		this.listProdutos.add(this.produto);		
+		this.listProdutos.add(this.produto);
 	}
 
 	public void clean() {
 		this.produto = new Produto();
 		this.log = new Log();
 	}
-	public void verificarInclusao(ActionEvent event) {
-          validarCampo();
-          logarAcoes(event);
-   	}
 	
+	public void excluir() {
+		this.listProdutos.remove(this.produtoSelecionado);
+	}
+	
+
+
+	public void verificarInclusao(ActionEvent event) {
+		validarCampo();
+		logarAcoes(event);
+	}
+
 	public void logarAcoes(ActionEvent event) {
 		log.setDataEvento(new Date());
 		log.setMetodo(event.getComponent().getId());
@@ -56,10 +64,16 @@ public class GestaoProdutoBean implements Serializable {
 
 	private void validarCampo() {
 		System.out.println("Verificando ..");
-		if ("".equals(this.produto.getFabricante())) {
-			System.out.println("Incluindo ..");
-			this.produto.setFabricante("Sem Fabricante");
-		}
+		if ("".equals(this.produto.getNome()))
+			this.produto.setNome("Nome Não Informado");
+
+		if ("".equals(this.produto.getCategoria()))
+			this.produto.setCategoria("Categoria Não Informada");
+
+		if ("".equals(this.produto.getFabricante()))
+
+			this.produto.setFabricante("Fabricante Não Informado");
+
 	}
 
 	public void pesquisar() {
@@ -76,8 +90,6 @@ public class GestaoProdutoBean implements Serializable {
 	public Produto getProduto() {
 		return produto;
 	}
-
-	
 
 //    @PostConstruct // chama o metodo após construtor do objeto - inicializar algum recurso
 //	public void inicializar() {
@@ -119,5 +131,20 @@ public class GestaoProdutoBean implements Serializable {
 		this.listLogs = listLogs;
 	}
 
-	
+	public Produto getProdutoSelecionado() {
+		return produtoSelecionado;
+	}
+
+	public void setProdutoSelecionado(Produto produtoSelecionado) {
+		this.produtoSelecionado = produtoSelecionado;
+	}
+
+	public Log getLogSelecionado() {
+		return logSelecionado;
+	}
+
+	public void setLogSelecionado(Log logSelecionado) {
+		this.logSelecionado = logSelecionado;
+	}
+
 }

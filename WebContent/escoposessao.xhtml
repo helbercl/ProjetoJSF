@@ -8,12 +8,12 @@
 <title>Escopo Aplicação e SessãoGestãoProdutos</title>
 </head>
 <body>
-	
+
 	<h:form id="frm_cadastro_produtos">
-      
-		<h:panelGroup id="pngroup_cadastro_produtos"    >
-			
-			<h:panelGrid id="pngrid_cadastro_produtos" border="1" columns="2" >
+
+		<h:panelGroup id="pngroup_cadastro_produtos">
+
+			<h:panelGrid id="pngrid_cadastro_produtos" border="1" columns="2">
                    Nome  :
                    <h:inputText value="#{gestaoproduto.produto.nome}" />
 				
@@ -28,19 +28,21 @@
 				<h:commandButton id="cmb_include" value="Incluir"
 					action="#{gestaoproduto.incluir}"
 					actionListener="#{gestaoproduto.logarAcoes}" />
-					
-			    <h:commandButton id="cmb_clean" value="Limpar" action="#{gestaoproduto.clean}" 
-			    actionListener="#{gestaoproduto.logarAcoes}"/>
-			    
-			    <h:commandButton id="cmb_ajuda" value="Ajuda" action="help/help_gestao_produtos?faces-redirect=true">
-			        <f:actionListener binding="#{registroCliqueBotaoListener}"/>
-			    </h:commandButton>
-		        
+
+				<h:commandButton id="cmb_clean" value="Limpar"
+					action="#{gestaoproduto.clean}"
+					actionListener="#{gestaoproduto.logarAcoes}" />
+
+				<h:commandButton id="cmb_ajuda" value="Ajuda"
+					action="help/help_gestao_produtos?faces-redirect=true">
+					<f:actionListener binding="#{registroCliqueBotaoListener}" />
+				</h:commandButton>
+
 
 			</h:panelGrid>
 		</h:panelGroup>
 	</h:form>
-    <br />
+	<br />
 	<h:form id="frm_pesquisar_produtos">
 		<h:panelGrid>
 			<h:panelGroup>
@@ -55,10 +57,11 @@
 			</h:panelGroup>
 		</h:panelGrid>
 	</h:form>
-
+	<br />
+	<br />
 	<h:form id="frm_listar_produtos">
 		<h:dataTable var="produtos" value="#{gestaoproduto.listProdutos}"
-			rendered="#{ not empty gestaoproduto.listProdutos}" bgcolor="Gray"
+			rendered="#{not empty gestaoproduto.listProdutos}" 
 			border="1" title="Lista de Produtos">
 			<h:column>
 				<f:facet name="header">
@@ -78,30 +81,51 @@
 				</f:facet>
 				<h:outputText value="#{produtos.categoria}" />
 			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Excluir" />
+				</f:facet>
+				<h:commandButton id="cmb_excluir" action="#{gestaoproduto.excluir}"  value="Excluir"
+				actionListener="#{gestaoproduto.logarAcoes}">
+				   <f:setPropertyActionListener value="#{produtos}" target="#{gestaoproduto.produtoSelecionado}" />
+				</h:commandButton>
+				
+			</h:column>
 		</h:dataTable>
 	</h:form>
-
+	<br />
+	<br />
+	<br />
+	<br />
 	<h:form id="frm_lista_log">
 		<h:dataTable var="logs" value="#{gestaoproduto.listLogs}"
-			rendered="#{not empty gestaoproduto.listLogs}" bgcolor="grey"
+			rendered="#{not empty gestaoproduto.listLogs}"
 			border="1" title="Lista Logs">
 			<h:column>
 				<f:facet name="header">
 					<h:outputText value="Data Evento" />
 				</f:facet>
-              <h:outputText value="#{logs.dataEvento}" />
+				<h:outputText value="#{logs.dataEvento}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Componente Utilizado" />
+				</f:facet>
+				<h:outputText value="#{logs.metodo}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Componente" />
+				</f:facet>
+				<h:outputText value="#{logs.componente}" />
 			</h:column>
 			<h:column>
 			  <f:facet name="header">
-			    <h:outputText value="Componente Utilizado"/>
+			    <h:outputText value="Excluir" />
 			  </f:facet>
-			  <h:outputText value="#{logs.metodo}"/>
-			</h:column>
-			<h:column>
-			  <f:facet name="header"> 
-			    <h:outputText value="Componente"/> 
-			  </f:facet>
-			  <h:outputText value="#{logs.componente}"/>
+			  <h:commandButton id="cmb_excluir_log" value="Excluir" actionListener="#{gestaoproduto.logarAcoes}"> 
+			    <f:setPropertyActionListener value="#{logs}" target="#{gestaoproduto.logSelecionado}" />
+			  </h:commandButton>
 			</h:column>
 
 		</h:dataTable>

@@ -10,7 +10,6 @@ import javax.faces.event.AbortProcessingException;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.ActionListener;
 @ManagedBean
-@SessionScoped
 public class RegistroCliqueBotaoListener implements ActionListener{
 
 	@Override
@@ -19,10 +18,9 @@ public class RegistroCliqueBotaoListener implements ActionListener{
 		log.setDataEvento(new Date());
 		log.setMetodo(event.getComponent().getId());
 		log.setComponente(event.getComponent().getFamily());
-        GestaoProdutoBean gestao = new GestaoProdutoBean();
         List<Log> listLog = new ArrayList<>();
         listLog.add(log);
-        gestao.setListLogs(listLog);
+    
 	}
 
 }
