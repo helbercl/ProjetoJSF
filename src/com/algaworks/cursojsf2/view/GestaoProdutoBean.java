@@ -18,16 +18,18 @@ public class GestaoProdutoBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Produto produto;
-	private List<Produto> listProdutos;
-	private String fabricantePesquisar;
-	private Log log;
-	private List<Log> listLogs;
-	private Produto produtoSelecionado;
-	private Log logSelecionado;
+	private Produto produto;// Produto
+	private List<Produto> listProdutos;// Lista produtos gerais
+	private List<Produto> listProdutosFiltrados;// Lista produto pesquisados
+	private String produtoPesquisado;// Produto Pesquisado
+	private Log log;// Log
+	private List<Log> listLogs;// Lista logs gerais
+	private Produto produtoSelecionado;// Produto selecionado para exclusão ou edição
+	private Log logSelecionado;// Log selecionado para exclusão ou edição
 
 	public GestaoProdutoBean() {
 		this.listProdutos = new ArrayList<Produto>();
+		this.listProdutosFiltrados = new ArrayList<Produto>();
 		this.listLogs = new ArrayList<Log>();
 		this.produto = new Produto();
 		this.log = new Log();
@@ -42,12 +44,14 @@ public class GestaoProdutoBean implements Serializable {
 		this.produto = new Produto();
 		this.log = new Log();
 	}
-	
+
 	public void excluir() {
 		this.listProdutos.remove(this.produtoSelecionado);
 	}
-	
 
+	public void excluirLogs() {
+		this.listLogs.remove(this.logSelecionado);
+	}
 
 	public void verificarInclusao(ActionEvent event) {
 		validarCampo();
@@ -80,11 +84,20 @@ public class GestaoProdutoBean implements Serializable {
 		System.out.println("Pesquisando....");
 	}
 
-	public void fabricantePesquisaAlterado(ValueChangeEvent event) {
-		if (this.produto.getFabricante().equalsIgnoreCase("")) {
-			this.produto.setFabricante("Sem Fabricante");
+	public void nomePesquisaAlterado(ValueChangeEvent event) {
+
+//		System.out.println("Evento de mudança de valor.");
+//		System.out.println("Valor Atual Fabricante Pesquisar:" + this.fabricantePesquisar);
+//		System.out.println("Valor Antigo Fabricante Pesquisar:" + event.getNewValue());
+//		this.listProdutosFiltrados.contains(event.getNewValue());
+
+		this.listProdutosFiltrados.clear();
+		for (Produto produto : this.listProdutos) {
+			if (produto.getNome()!=null && produto.getNome().toLowerCase().startsWith(event.getNewValue().toString().toLowerCase())) {
+				listProdutosFiltrados.add(produto);
+			}
 		}
-		this.fabricantePesquisar = event.getNewValue().toString();
+
 	}
 
 	public Produto getProduto() {
@@ -99,14 +112,7 @@ public class GestaoProdutoBean implements Serializable {
 //    public void finalizar() {
 //    	System.out.println("Finalizando Bean!");
 //    }
-	public String getFabricantePesquisar() {
-		return fabricantePesquisar;
-	}
-
-	public void setFabricantePesquisar(String fabricante) {
-		this.fabricantePesquisar = fabricante;
-	}
-
+	
 	public Log getLog() {
 		return log;
 	}
@@ -145,6 +151,17 @@ public class GestaoProdutoBean implements Serializable {
 
 	public void setLogSelecionado(Log logSelecionado) {
 		this.logSelecionado = logSelecionado;
+	}
+
+	public List<Produto> getListProdutosFiltrados() {
+		return listProdutosFiltrados;
+	}
+
+	public String getProdutoPesquisado() {
+		return produtoPesquisado;
+	}
+	public void setProdutoPesquisado(String produtoPesquisado) {
+		this.produtoPesquisado = produtoPesquisado;
 	}
 
 }

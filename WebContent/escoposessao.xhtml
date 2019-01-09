@@ -32,6 +32,7 @@
 				<h:commandButton id="cmb_clean" value="Limpar"
 					action="#{gestaoproduto.clean}"
 					actionListener="#{gestaoproduto.logarAcoes}" />
+					<!-- Evento de mudança de ação Action Listener xige um ActionEvent no metodo-->
 
 				<h:commandButton id="cmb_ajuda" value="Ajuda"
 					action="help/help_gestao_produtos?faces-redirect=true">
@@ -43,25 +44,29 @@
 		</h:panelGroup>
 	</h:form>
 	<br />
+	
 	<h:form id="frm_pesquisar_produtos">
-		<h:panelGrid>
+		<h:panelGrid columns="1">
 			<h:panelGroup>
-
 				<!-- propriedade valueChangeListener faz um link/amarração com metodo que será chamado quando  
 				    houver modificações de valor no campo inputext   -->
-
-				<h:inputText value="#{gestaoproduto.fabricantePesquisar}"
-					valueChangeListener="#{gestaoproduto.fabricantePesquisaAlterado}" />
-				<h:commandButton value="Pesquisar"
-					action="#{gestaoproduto.pesquisar}" />
+				<h:outputLabel value="Pesquisar Por Fabricante:" for="opt_pesquisar_fabricante" /><br></br>
+				 
+				<h:inputText id="opt_pesquisar_produto" value="#{gestaoproduto.produtoPesquisado}"
+					valueChangeListener="#{gestaoproduto.nomePesquisaAlterado}" 
+					onchange="submit()"/>
+					<!-- Evento de mudança de valor Value Change Listener  exige um ValueChangeEvent no metodo-->
+				<h:commandButton value="Pesquisar" action="#{gestaoproduto.pesquisar}" />
+				
 			</h:panelGroup>
 		</h:panelGrid>
 	</h:form>
+	
 	<br />
 	<br />
 	<h:form id="frm_listar_produtos">
-		<h:dataTable var="produtos" value="#{gestaoproduto.listProdutos}"
-			rendered="#{not empty gestaoproduto.listProdutos}" 
+		<h:dataTable var="produtos" value="#{gestaoproduto.listProdutosFiltrados}"
+			rendered="#{not empty gestaoproduto.listProdutosFiltrados}" 
 			border="1" title="Lista de Produtos">
 			<h:column>
 				<f:facet name="header">
@@ -123,7 +128,8 @@
 			  <f:facet name="header">
 			    <h:outputText value="Excluir" />
 			  </f:facet>
-			  <h:commandButton id="cmb_excluir_log" value="Excluir" actionListener="#{gestaoproduto.logarAcoes}"> 
+			  <h:commandButton id="cmb_excluir_log" value="Excluir" action="#{gestaoproduto.excluirLogs}" 
+			  actionListener="#{gestaoproduto.logarAcoes}"> 
 			    <f:setPropertyActionListener value="#{logs}" target="#{gestaoproduto.logSelecionado}" />
 			  </h:commandButton>
 			</h:column>
