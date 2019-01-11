@@ -12,7 +12,9 @@ import javax.annotation.PreDestroy;
 import javax.faces.bean.ManagedBean;
 //import javax.faces.bean.NoneScoped;
 import javax.faces.bean.SessionScoped;
+import javax.faces.event.ActionEvent;
 //import javax.faces.bean.ViewScoped;
+import javax.swing.event.ChangeEvent;
 
 import com.algaworks.cursojsf2.model.Livros;
 import com.sun.org.apache.regexp.internal.recompile;
@@ -28,22 +30,50 @@ public class CatalogoLivrosBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private Livros livro;
-	private List<Livros> livros;
+	private List<Livros> listLivros;
+	private Livros livroSelecionado;
+	private Log log;
+	private List<Log> listLogs;
 	
 
 	public CatalogoLivrosBean() {
 		this.livro = new Livros();
-		this.livros = new ArrayList<Livros>();
+		this.listLivros = new ArrayList<Livros>();
+		this.listLogs = new ArrayList<Log>();
 
+	}
+	
+	private void validarCadastro() {
+		if ("".equals( this.livro.getTitulo())) {
+			this.livro.setTitulo("Titulo Não informado");
+		}
+		if ("".equals(this.livro.getAutores())) {
+			this.livro.setAutores("Autor Não Informado");
+		}
+		if ("".equals(this.livro.getAssuntos())) {
+			this.livro.setAssuntos("Assunto Não Informado");
+		}
 	}
 
 	public void inserir() {
-		this.livros.add(this.livro);
-		this.livro = new Livros();
+		validarCadastro();
+		this.listLivros.add(this.livro);
 	}
-
+    
+	public void excluir() {
+		this.listLivros.remove(this.livroSelecionado);
+	}
+	
+	public void logarAcoes(ActionEvent event) {
+		log.setDataEvento(new Date());
+		log.setMetodo(event.getComponent().getId());
+		log.setComponente(event.getComponent().toString());
+		listLogs.add(log);
+		this.log = new Log();
+		System.out.println(event.getComponent().getNamingContainer());
+	}
 	public String obterAjuda() {
-		if (this.livros.isEmpty()) {
+		if (this.listLivros.isEmpty()) {
 			return "help/help?faces-redirect=true";
 		} else {
 			return "help/help_phone?faces-redirect=true";
@@ -70,11 +100,34 @@ public class CatalogoLivrosBean implements Serializable {
 	}
 
 	public List<Livros> getLivros() {
-		return livros;
+		return listLivros;
 	}
 
 	public void setLivros(List<Livros> livros) {
-		this.livros = livros;
+		this.listLivros = livros;
+	}
+
+	public Livros getLivroSelecionado() {
+		return livroSelecionado;
+	}
+	public void setLivroSelecionado(Livros livroSelecionado) {
+		this.livroSelecionado = livroSelecionado;
+	}
+
+	public Log getLog() {
+		return log;
+	}
+
+	public void setLog(Log log) {
+		this.log = log;
+	}
+
+	public List<Log> getListLogs() {
+		return listLogs;
+	}
+
+	public void setListLogs(List<Log> listLogs) {
+		this.listLogs = listLogs;
 	}
 
 }

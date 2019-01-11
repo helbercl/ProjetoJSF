@@ -9,51 +9,95 @@
 </head>
 <body>
 	<h:form id="frm_catalogo_livros">
-	<h:commandLink value="Ajuda" action="help/help?faces-redirect=true"/><br></br>
-	<h:commandLink value="Ajuda Redirect Classe" action="#{catalogolivros.obterAjuda}"/>
+		<h:commandLink value="Ajuda" action="help/help?faces-redirect=true" />
+		<br></br>
+		<h:commandLink value="Ajuda Redirect Classe"
+			action="#{catalogolivros.obterAjuda}" />
 		<h:panelGrid columns="2">
 			<h:column>
 				<h:outputLabel for="ipt_titulo" value="Titulo :" />
 				<h:inputText id="ipt_titulo" value="#{catalogolivros.livro.titulo}" />
 			</h:column>
-			
+
 			<br></br>
 			<h:column>
-                <h:outputLabel for="ipt_autor" value="Autor :"/>
-                <h:inputText id="ipt_autor" value="#{catalogolivros.livro.autores}"/>
+				<h:outputLabel for="ipt_autor" value="Autor :" />
+				<h:inputText id="ipt_autor" value="#{catalogolivros.livro.autores}" />
 			</h:column>
 			<br></br>
 			<h:column>
-                <h:outputLabel for="ipt_assunto" value="Assunto :"/>
-                <h:inputText id="ipt_assunto" value="#{catalogolivros.livro.assuntos}"/>
+				<h:outputLabel for="ipt_assunto" value="Assunto :" />
+				<h:inputText id="ipt_assunto"
+					value="#{catalogolivros.livro.assuntos}" />
 			</h:column>
 			<br></br>
 			<h:column>
-                <h:commandButton id="cmb_gravar" action="#{catalogolivros.inserir}" value="Gravar"/>
+				<h:commandButton id="cmb_gravar" action="#{catalogolivros.inserir}"
+					value="Gravar" />
 			</h:column>
 		</h:panelGrid>
-		
-		<h:dataTable id="dtt_lista_livros" var="livros" value="#{catalogolivros.livros}" 
-		rendered="#{not empty catalogolivros.livros}" border="2" cellpadding="3" cellspacing="2">
-		   <h:column>
-		      <f:facet name="header">
-		         <h:outputText value="Titulo"/>
-		      </f:facet>
-		      <h:outputText value="#{livros.titulo}"/>
-		   </h:column>
-		   <h:column>
-		     <f:facet name="header">
-		       <h:outputText value="Autor"/>
-		     </f:facet>
-		     <h:outputText value="#{livros.autores}"/>
-		   </h:column>
-		   <h:column>
-		     <f:facet name="header">
-		       <h:outputText value="Assuntos"/>
-		     </f:facet>
-		     <h:outputText value="#{livros.assuntos}"/>
-		   </h:column>
+
+	</h:form>
+	<h:form id="frm_lista_livros">
+		<h:dataTable id="dtt_lista_livros" var="livros"
+			value="#{catalogolivros.livros}"
+			rendered="#{not empty catalogolivros.livros}" border="2"
+			cellpadding="3" cellspacing="2">
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Titulo" />
+				</f:facet>
+				<h:outputText value="#{livros.titulo}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Autor" />
+				</f:facet>
+				<h:outputText value="#{livros.autores}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Assuntos" />
+				</f:facet>
+				<h:outputText value="#{livros.assuntos}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Excluir" />
+				</f:facet>
+				<h:commandLink id="cml_excluir" value="Excluir"
+					action="#{catalogolivros.excluir}"
+					actionListener="#{catalogolivros.logarAcoes}">
+					<f:setPropertyActionListener value="#{livros}"
+						target="#{catalogolivros.livroSelecionado}"></f:setPropertyActionListener>
+				</h:commandLink>
+			</h:column>
 		</h:dataTable>
 	</h:form>
+	<h:form id="frm_lista_logs">
+		<h:dataTable id="dtt_logs" var="logs" border="2" title="Logs" cellpadding="3" cellspacing="2"
+			value="#{catalogolivros.listLogs}"
+			rendered="#{not empty catalogolivros.listLogs }">
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Data Evento"/>
+				</f:facet>
+				<h:outputText value="#{logs.dataEvento}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Componente Utilizado"/>
+				</f:facet>
+				<h:outputText value="#{logs.metodo}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Componente"/>
+				</f:facet>
+				<h:outputText value="#{logs.componente}"/>
+			</h:column>
+		</h:dataTable>
+	</h:form>
+
 </body>
 </html>
