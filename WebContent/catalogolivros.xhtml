@@ -32,17 +32,24 @@
 			</h:column>
 			<br></br>
 			<h:column>
-				<h:commandButton id="cmb_gravar" action="#{catalogolivros.inserir}"
+				<h:commandButton id="cmb_gravar" action="#{catalogolivros.inserir}" actionListener="#{catalogolivros.logarAcoes}"
 					value="Gravar" />
+			
+			  <h:commandButton id="cmb_limpar" value="Limpar" action="#{catalogolivros.limpar}"/>
 			</h:column>
 		</h:panelGrid>
 
 	</h:form>
+	
+	<h:form>
+	  <h:outputLabel for="ipt_buscar_livro" value="Informe o Nome do Livro:"/>
+	  <h:inputText id="ipt_buscar_livro" value="#{catalogolivros.livroPesquisado}" 
+	  valueChangeListener="#{catalogolivros.buscarLivros}" onchange="submit()"/>
+	  <h:commandButton id="cmb_buscar_livro" value="Pesquisar" action="#{catalogolivros.buscarLivros}"/>
+	</h:form>
 	<h:form id="frm_lista_livros">
-		<h:dataTable id="dtt_lista_livros" var="livros"
-			value="#{catalogolivros.livros}"
-			rendered="#{not empty catalogolivros.livros}" border="2"
-			cellpadding="3" cellspacing="2">
+		<h:dataTable id="dtt_lista_livros" var="livros" value="#{catalogolivros.livrosPesquisados}" rendered="#{not empty catalogolivros.livrosPesquisados}" 
+		border="2" 	cellpadding="3" cellspacing="2">
 			<h:column>
 				<f:facet name="header">
 					<h:outputText value="Titulo" />
@@ -65,15 +72,16 @@
 				<f:facet name="header">
 					<h:outputText value="Excluir" />
 				</f:facet>
-				<h:commandLink id="cml_excluir" value="Excluir"
-					action="#{catalogolivros.excluir}"
+				<h:commandLink id="cml_excluir" value="Excluir" action="#{catalogolivros.excluir}"
 					actionListener="#{catalogolivros.logarAcoes}">
 					<f:setPropertyActionListener value="#{livros}"
-						target="#{catalogolivros.livroSelecionado}"></f:setPropertyActionListener>
+						target="#{catalogolivros.livroSelecionado}">
+					</f:setPropertyActionListener>
 				</h:commandLink>
 			</h:column>
 		</h:dataTable>
 	</h:form>
+	
 	<h:form id="frm_lista_logs">
 		<h:dataTable id="dtt_logs" var="logs" border="2" title="Logs" cellpadding="3" cellspacing="2"
 			value="#{catalogolivros.listLogs}"
