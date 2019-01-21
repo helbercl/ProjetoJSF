@@ -15,7 +15,7 @@
 }
 
 .campo:focus {
-	background-color: yellow;	
+	background-color: yellow;
 }
 </style>
 	<script>
@@ -32,20 +32,24 @@
 </h:head>
 <h:body>
 	<h:form id="frm_newsletter">
-		<h:outputLabel id="opl_email" for="ipt_email" value="Assine nossa newsletter" />
-		
+		<h:outputLabel id="opl_email" for="ipt_email"
+			value="Assine nossa newsletter" />
+
 		<br></br>
-		
-		<h:inputText id="ipt_email" value="#{nwslet.email}" size="40" maxlength="30" title="Insira o e-mail"
-		 onfocus="this.value=''" style="font-size:19px" styleClass="campo" />
-			
+
+		<h:inputText id="ipt_email" value="#{nwslet.email}" size="40"
+			maxlength="30" title="Insira o e-mail" onfocus="this.value=''"
+			style="font-size:19px" styleClass="campo" />
+
 		<br></br>
-		
-		<h:commandButton id="cmd_inserir" value="Assinar" onclick="return validar()" action="#{nwslet.inserir}"	
-		actionListener="#{nwslet.logar}" />
+
+		<h:commandButton id="cmd_inserir" value="Assinar"
+			onclick="return validar()" action="#{nwslet.inserir}"
+			actionListener="#{nwslet.logar}" />
 		<!-- o retorno determina se a ação do botão será executada.Assim como o eventListener -->
-		<h:commandButton id="cmb_limpar" value="Limpar"	action="#{nwslet.limpar}" actionListener="#{nwslet.logar}" />
-			
+		<h:commandButton id="cmb_limpar" value="Limpar"
+			action="#{nwslet.limpar}" actionListener="#{nwslet.logar}" />
+
 		<h:outputLabel id="opl_result" value="Inserido com Sucesso!"
 			style="font-color:red" rendered="#{nwslet.sucesso eq 'Sim'}" />
 	</h:form>

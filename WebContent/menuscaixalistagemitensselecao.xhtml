@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Menus Caixa de Listagem Item Seleção</title>
+</h:head>
+<h:body>
+	<h:form id="time_favorito">
+		<h1>Escolha seu time</h1>
+		<h:selectOneMenu id="time" value="#{timeFavoritoBean.time}">
+			<f:selectItem itemValue="Flamengo" itemLabel="Mengão"/>
+			<f:selectItem itemValue="Vasco" itemLabel="Vascão"/>
+			<f:selectItem itemValue="Palmeiras" itemLabel="Porcão"/>
+			<f:selectItem itemValue="Santos" itemLabel="Peixe"/>
+			<f:selectItem itemValue="São Paulo" itemLabel="Bambis"/>
+			<f:selectItem itemValue="Fluminense" itemLabel="Fluzão" />
+			<f:selectItem itemValue="Internacional" itemLabel="Inter" />
+			<f:selectItem itemValue="Gremio" itemLabel="Gremio" />
+			<f:selectItem itemValue="Botafogo" itemLabel="Fogão"/>
+			<f:selectItem itemValue="Atletico Mineiro" itemLabel="Galinhada"/>
+			<f:selectItem itemValue="Outro" />
+		</h:selectOneMenu>
+		<br></br>
+		<br></br>
+		<h:selectOneListbox id="linguagem" value="#{timeFavoritoBean.time}">
+		  <f:selectItem itemValue="Flamengo" itemLabel="Mengão"/>
+			<f:selectItem itemValue="Vasco" itemLabel="Vascão"/>
+			<f:selectItem itemValue="Palmeiras" itemLabel="Porcão"/>
+			<f:selectItem itemValue="Santos" itemLabel="Peixe"/>
+			<f:selectItem itemValue="São Paulo" itemLabel="Bambis"/>
+			<f:selectItem itemValue="Fluminense" itemLabel="Fluzão" />
+			<f:selectItem itemValue="Internacional" itemLabel="Inter" />
+			<f:selectItem itemValue="Gremio" itemLabel="Gremio" />
+			<f:selectItem itemValue="Botafogo" itemLabel="Fogão"/>
+			<f:selectItem itemValue="Atletico Mineiro" itemLabel="Galinhada"/>
+			<f:selectItem itemValue="Outro" />
+		</h:selectOneListbox>
+		
+		<h:commandButton value="Escolher" action="#{timeFavoritoBean.escolher}" />
+		
+		
+		<br></br><br></br>
+		<div title="Time Selecionado">
+		 <h:outputText value="#{timeFavoritoBean.time}" rendered="#{not empty timeFavoritoBean.time}" 
+		 style="background-color:red; font-size:32px; font-family=Arial"/>
+		</div>
+	</h:form>
+</h:body>
+</html>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Menus Caixa de Listagem Item Seleção</title>
+</h:head>
+<h:body>
+	<h:form id="frm_timesfavorito">
+		<h1>Escolha seus times favoritos</h1>
+		
+		<h:selectManyMenu id="times" value="#{timesFavoritosBean.times}" >
+			<f:selectItem itemValue="Flamengo" itemLabel="Mengão"/>
+			<f:selectItem itemValue="Vasco" itemLabel="Vascão"/>
+			<f:selectItem itemValue="Palmeiras" itemLabel="Porcão"/>
+            <f:selectItem itemValue="Santos" itemLabel="Peixe"/>
+			<f:selectItem itemValue="São Paulo" itemLabel="Bambis"/>
+			<f:selectItem itemValue="Fluminense" itemLabel="Fluzão" />
+			<f:selectItem itemValue="Internacional" itemLabel="Inter" />
+			<f:selectItem itemValue="Gremio" itemLabel="Gremio" />
+			<f:selectItem itemValue="Botafogo" itemLabel="Fogão"/>
+			<f:selectItem itemValue="Atletico Mineiro" itemLabel="Galinhada"/>
+			<f:selectItem itemValue="Outros" />	
+		</h:selectManyMenu>
+		<br></br>
+		<br></br>
+		
+			<h:selectManyListbox id="times_lb" value="#{timesFavoritosBean.times}" >
+			<f:selectItem itemValue="Flamengo" itemLabel="Mengão"/>
+			<f:selectItem itemValue="Vasco" itemLabel="Vascão"/>
+			<f:selectItem itemValue="Palmeiras" itemLabel="Porcão"/>
+            <f:selectItem itemValue="Santos" itemLabel="Peixe"/>
+			<f:selectItem itemValue="São Paulo" itemLabel="Bambis"/>
+			<f:selectItem itemValue="Fluminense" itemLabel="Fluzão" />
+			<f:selectItem itemValue="Internacional" itemLabel="Inter" />
+			<f:selectItem itemValue="Gremio" itemLabel="Gremio" />
+			<f:selectItem itemValue="Botafogo" itemLabel="Fogão"/>
+			<f:selectItem itemValue="Atletico Mineiro" itemLabel="Galinhada"/>
+			<f:selectItem itemValue="Outros" />	
+		   </h:selectManyListbox>
+		<br></br>
+		
+		<h:commandButton value="Escolher" action="#{timesFavoritosBean.escolher}" />
+		
+		
+		<br></br>
+		<div title="Time Selecionado">
+		   <ui:repeat var="times" value="#{timesFavoritosBean.times}">
+		     <li>#{times}</li>
+		   </ui:repeat>
+		</div>
+	</h:form>
+</h:body>
+</html>
