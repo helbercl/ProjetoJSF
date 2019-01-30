@@ -10,13 +10,37 @@
 </h:head>
 <h:body>
 	<h:form id="frm_radioschecagem">
-    Sexo:
-    <h:selectOneRadio value="#{perfilUsuarioBean.sexo}">
-			<f:selectItem itemValue="M" itemLabel="Masculino" />
-			<f:selectItem itemValue="F" itemLabel="Feminino" />
-		</h:selectOneRadio>
-		<h:commandButton value="Enviar" action="#{perfilUsuarioBean.enviar}" />
+
+		<h:panelGrid id="png_radio_check">
+ 
+   Sexo:
+        <h:selectOneRadio id="sor_sexo" value="#{perfilUsuarioBean.sexo}"
+				layout="pageDirection">
+				<f:selectItem itemValue="M" itemLabel="Masculino" />
+				<f:selectItem itemValue="F" itemLabel="Feminino" />
+			</h:selectOneRadio>
+			<br></br>
+			<br></br>
+			
+			Gostaria de Receber Novidades a empresa por E-mail:
+			<h:selectBooleanCheckbox id="mail_newsletter"
+				value="#{perfilUsuarioBean.receberNovidades}" />
 		
+		<br></br>
+		<br></br>		
+	
+         Linguagens Favoritas:
+		   <h:selectManyCheckbox id="smcb_linguagem" layout="lineDirection" 
+				value="#{perfilUsuarioBean.linguagemFavoritas}">
+				<f:selectItem itemValue="Java" />
+				<f:selectItem itemValue="Python"/>
+				<f:selectItem itemValue="Ruby"/>
+				<f:selectItem itemValue="C++"/>
+				<f:selectItem itemValue="C#"/>
+			</h:selectManyCheckbox>
+			
+			<h:commandButton id="cmb_enviar" value="Enviar" action="#{perfilUsuarioBean.enviar}" />
+		</h:panelGrid>
 	</h:form>
 </h:body>
 </html>
