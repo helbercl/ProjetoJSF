@@ -16,19 +16,22 @@
 		<h:panelGrid columns="2">
 			<h:column>
 				<h:outputLabel for="ipt_titulo" value="Titulo :" />
-				<h:inputText id="ipt_titulo" value="#{catalogolivros.livro.titulo}" />
+				<h:inputText id="ipt_titulo" value="#{catalogolivros.livro.titulo}" 
+				size="40" title="Informe o Titulo" maxlength="40"/>
 			</h:column>
 
 			<br></br>
 			<h:column>
 				<h:outputLabel for="ipt_autor" value="Autor :" />
-				<h:inputText id="ipt_autor" value="#{catalogolivros.livro.autores}" />
+				<h:inputText id="ipt_autor" value="#{catalogolivros.livro.autores}" 
+				size="40" title="Informe o Autor" maxlength="40"/>
 			</h:column>
 			<br></br>
 			<h:column>
 				<h:outputLabel for="ipt_assunto" value="Assunto :" />
 				<h:inputText id="ipt_assunto"
-					value="#{catalogolivros.livro.assuntos}" />
+					value="#{catalogolivros.livro.assuntos}" 
+					size="40" title="Informe o Assunto"/>
 			</h:column>
 			<br></br>
 			<h:column>
