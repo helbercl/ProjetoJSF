@@ -12,23 +12,34 @@
 	<h:form>
   Sexo Selecionado : #{perfilUsuarioBean.sexo}
   <br></br>
-  <br></br>
+		<br></br>
   Receber Novidades : 
   #{perfilUsuarioBean.receberNovidades? 'Sim':'Não'}
   <br></br>
-  <br></br>
+		<br></br>
+  <b>Nome Pagina Botões e Links:</b> #{formularioBean.nome}
+  
+  	<br></br>
+		<br></br>
   Linguagens Favoritas:
         <ul>
-			<ui:repeat var="linguagem"	value="#{perfilUsuarioBean.linguagemFavoritas}">
+			<ui:repeat var="linguagem"
+				value="#{perfilUsuarioBean.linguagemFavoritas}">
 				<li>#{linguagem}</li>
 			</ui:repeat>
 		</ul>
 		<h:commandLink value="Voltar Checagem Radio"
 			action="checagemradios?faces-redirect=true" />
-	<br></br>
-  <br></br>
-  Nome Pagina Botões e Links:
-  #{formularioBean.nome}
+		<br></br>
+		<br></br>
+		<h:commandButton image="/imagens/voltar.ico"
+			action="botoeslinks?faces-redirect=true" 
+			alt="Voltar Botão Link!" />
+	   <br></br><br></br>
+       <h:commandLink action="botoeslinks">
+          <h:graphicImage value="/imagens/voltar.ico"/>
+       </h:commandLink>
+       
 	</h:form>
 </h:body>
 </html>

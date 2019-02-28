@@ -11,9 +11,20 @@
 <h:body>
 	<h:form id="frm_buttons_links">
     Nome:
-    <h:inputText value="#{formularioBean.nome}" /><br></br><br></br>
-		<h:commandButton id="cmb_inserir" value="Inserir"
-			action="resultado?send-redirect=true" actionListener="d"/>
+    <h:inputText id="ipt_nome" value="#{formularioBean.nome}" />
+    <br></br><br></br>
+	<h:commandButton id="cmb_inserir" value="Enviar" action="resposta?faces-redirect=true"/>
+	<br></br><br></br>
+	<h:commandButton value="Clean" type="reset"/>
+	<br></br>
+	<!-- Não submete dados -->	
+	<h:outputLink value="http://www.google.com" >Google
+	 <f:param name="q" value="Algaworks"/>
+	</h:outputLink>
+	<br></br>	
+	<br></br>	
+	<!-- Não submete dados -->
+	<h:link value="Ir para resultado" outcome="resposta" />   
 	</h:form>
 </h:body>
 </html>
