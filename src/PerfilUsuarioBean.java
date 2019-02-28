@@ -2,10 +2,11 @@ import java.io.Serializable;
 
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 
 @ManagedBean(name = "perfilUsuarioBean")
-@ViewScoped
+@SessionScoped
 //@SessionScoped
 public class PerfilUsuarioBean implements Serializable {
 

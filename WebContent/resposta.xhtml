@@ -10,14 +10,14 @@
 </h:head>
 <h:body>
 	<h:form>
-  Sexo Selecionado : #{perfilUsuarioBean.sexo}
-  <br></br>
-		<br></br>
+		<div id="sexo">
+			Sexo Selecionado : #{perfilUsuarioBean.sexo} <br></br> <br></br>
+		</div>
   Receber Novidades : 
   #{perfilUsuarioBean.receberNovidades? 'Sim':'Não'}
   <br></br>
 		<br></br>
-  <b>Nome Pagina Botões e Links:</b> #{formularioBean.nome}
+		<b>Nome Pagina Botões e Links:</b> #{formularioBean.nome}
   
   	<br></br>
 		<br></br>
@@ -33,13 +33,13 @@
 		<br></br>
 		<br></br>
 		<h:commandButton image="/imagens/voltar.ico"
-			action="botoeslinks?faces-redirect=true" 
-			alt="Voltar Botão Link!" />
-	   <br></br><br></br>
-       <h:commandLink action="botoeslinks">
-          <h:graphicImage value="/imagens/voltar.ico"/>
-       </h:commandLink>
-       
+			action="botoeslinks?faces-redirect=true" alt="Voltar Botão Link!" />
+		<br></br>
+		<br></br>
+		<h:commandLink action="botoeslinks">
+			<h:graphicImage value="/imagens/voltar.ico" />
+		</h:commandLink>
+
 	</h:form>
 </h:body>
 </html>
