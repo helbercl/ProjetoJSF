@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Formulario Tabelas</title>
+</h:head>
+<h:body>
+	<h:form id="frm_tabelas">
+	 <h:messages />
+		<h:panelGrid columns="2">
+			<f:facet name="header">
+              Cadastro de novo Usuario
+            </f:facet>
+			<h:outputLabel id="opl_nome" for="ipt_nome" value="Nome Completo:" />
+			<h:panelGroup>
+				<h:inputText id="ipt_nome" value="#{formularioMensagem.nome}"/>
+				<h:graphicImage alt="Imagem" value="/imagens/duvida.png" height="20px" title="Informe seu nome completo." />
+			</h:panelGroup>
+			<h:outputLabel id="opt_mail" for="ipt_mail" value="E-mail:" />
+			<h:inputText id="ipt_mail" value="#{formularioMensagem.mail}"/>
+			<h:outputLabel id="opl_senha" for="ips_senha" value="Senha:" />
+			<h:inputSecret id="ips_senha" value="#{formularioMensagem.senha}"/>
+			<h:outputLabel />
+			<h:commandButton id="cmb_gravar" value="Gravar" action="#{formularioMensagem.cadastrar}" />
+
+		</h:panelGrid>
+	</h:form>
+</h:body>
+</html>
