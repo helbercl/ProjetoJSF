@@ -9,32 +9,38 @@
 </h:head>
 <h:body>
 	<h:form id="frm_curriculo">
-	    <h:graphicImage alt="Imagem" value="/imagens/mint.jpg" height="50px"/><br></br>
-		<h:outputText
-			value="Cadastro Curriculo para vaga #{cadastroCurriculoBean.vaga}"
-			style="font-weight:bold ; font-size:25px" />
-		<br></br>
-        <!-- PlaceHolder - Com indice que usuara os parametros de acordo com f:param -->
-		<h:outputFormat value="Vaga {0} - Cargo{1}" style="color:red">
-			<f:param value="A0382D" name="#{cadastroCurruiculoBean.vaga}" />
-			<f:param value="#{cadastroCurriculoBean.cargo}" />
-		</h:outputFormat>
-		
-		<br></br>
-		<br></br>
-		<h:outputLabel value="E-mail" title="E-mail Pessoal" for="ipt_mail" />
-		<h:inputText id="ipt_mail"/>
-		<br></br>
-		<br></br>
-		<h:outputLabel value="Senha" for="ips_senha" />
-		<h:inputSecret id="ips_senha" size="40" alt="Informe a senha!" />
-		<br></br>
-		<br></br>
-		<h:outputLabel value="Qualificações" for="iptt_qualificacoes" />
-		<h:inputTextarea id="iptt_qualificacoes" cols="60" rows="5"/>
-		<br></br>
-		<br></br>
-		<h:commandButton value="Cadastrar" />
+		<h:panelGrid columns="1" border="1">
+			<h:panelGroup id="pg_cabecario">
+				<h:graphicImage alt="Imagem" value="/imagens/mint.jpg" height="50px" />
+				<br></br>
+				<h:outputText
+					value="Cadastro Curriculo para vaga #{cadastroCurriculoBean.vaga}"
+					style="font-weight:bold ; font-size:25px" />
+				<br></br>
+				<!-- PlaceHolder - Com indice que usuara os parametros de acordo com f:param -->
+				<h:outputFormat value="Vaga {0} - Cargo{1}" style="color:red">
+					<f:param value="A0382D" name="#{cadastroCurruiculoBean.vaga}" />
+					<f:param value="#{cadastroCurriculoBean.cargo}" />
+				</h:outputFormat>
+			</h:panelGroup>
+		</h:panelGrid>
+		<h:panelGrid columns="1" border="1">
+			<h:panelGroup id="pg_dados">
+				<h:outputLabel value="E-mail :" title="E-mail Pessoal" for="ipt_mail" />
+				<h:inputText id="ipt_mail" />
+				<hr></hr>
+				<br></br>
+				<h:outputLabel value="Senha :" for="ips_senha" />
+				<h:inputSecret id="ips_senha" size="40" alt="Informe a senha!" />
+				<hr></hr>
+				<br></br>
+				<h:outputLabel value="Qualificações :" for="iptt_qualificacoes" />
+				<h:inputTextarea id="iptt_qualificacoes" cols="60" rows="5" />
+
+				<br></br>
+				<h:commandButton value="Cadastrar" />
+			</h:panelGroup>
+		</h:panelGrid>
 	</h:form>
 </h:body>
 

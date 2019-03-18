@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Cadastro Curriculos</title>
+</h:head>
+<h:body>
+	<h:form id="frm_curriculo">
+     <h:graphicImage alt="Imagem" value="/imagens/mint.jpg" height="100px" width="100px"/><br/>
+		<h:outputText
+			value="Cadastro Curriculo para vaga #{cadastroCurriculoBean.vaga}"
+			style="font-weight:bold ; font-size:25px" />
+		<br /><br />
+		<h:outputFormat value="Vaga: {0} - Cargo :{1}  - E-mail: {2}" style="color:red">
+			<f:param value="#{cadastroCurriculoBean.vaga}" />
+			<f:param value="#{cadastroCurriculoBean.cargo}" />
+			<f:param value="#{cadastroCurriculoBean.mail}" />
+		</h:outputFormat>
+		<br /><br />
+
+
+		<h:outputLabel value="E-mail :" for="ipt_mail" /><br/>
+		<h:inputText id="ipt_mail" size="60"/>
+		<br/>
+		<h:outputLabel value="Senha :" for="ipt_password" /><br/>
+		<h:inputSecret id="ipt_password" size="40"/>
+		<br/>
+		<h:outputLabel value="Qualificações :" for="opl_qualifications" /><br/>
+		<h:inputTextarea id="opl_qualifications" cols="60" rows="5" />
+		<br/>
+		<h:commandButton value="Cadastrar" />		
+		<h:commandButton value="Limpar" type="reset"/>
+
+
+	</h:form>
+</h:body>
+
+</html>

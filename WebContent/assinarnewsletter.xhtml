@@ -19,57 +19,46 @@
 }
 </style>
 	<script>
-	 function validar() {
-		campoEmail = document.getElementById('frm_newsletter:ipt_email');
-		if (campoEmail.value =='') {
-			alert('Informe seu e-mail!');
-			return false;
 		}
-		return true;
+		if (campoEmailCompleto.value =='' || campoEmailCompleto== null) {// verifica se seu valor é vazio
+			alert('Informe seu e-mail!');//Mostra Mensagem
+			return false; // retorna falso
+		}
+		return true;//retorna verdadeiro caso não esteja vazio ou nulo
+	 }
+	 fuction limpar(){
+		with(document){			
+			getElementById("ipt_email").valeu="";
+		}
 	 }
 	 
 	</script>
 </h:head>
 <h:body>
 	<h:form id="frm_newsletter">
-		<h:outputLabel id="opl_email" for="ipt_email"
-			value="Assine nossa newsletter" />
-
-		<br></br>
-
-		<h:inputText id="ipt_email" value="#{nwslet.email}" size="40"
-			maxlength="30" title="Insira o e-mail" onfocus="this.value=''"
-			style="font-size:19px" styleClass="campo" />
-
-		<br></br>
-
-		<h:commandButton id="cmd_inserir" value="Assinar"
-			onclick="return validar()" action="#{nwslet.inserir}"
-			actionListener="#{nwslet.logar}" />
+		<h:outputLabel id="opl_email" for="ipt_email" value="Assine nossa newsletter" />	<br/>
+		<h:inputText id="ipt_email" value="#{nwslet.email}" size="40" maxlength="30" title="Insira o e-mail" onfocus="this.value='@dominio.com'" 
+		style="font-size:19px" styleClass="campo" />
+        <br/>
+		<h:commandButton id="cmd_inserir" value="Assinar" onclick="return validar()" action="#{nwslet.inserir}" actionListener="#{nwslet.logar}" />
 		<!-- o retorno determina se a ação do botão será executada.Assim como o eventListener -->
-		<h:commandButton id="cmb_limpar" value="Limpar"
-			action="#{nwslet.limpar}" actionListener="#{nwslet.logar}" />
+		<h:commandButton id="cmb_limpar" value="Limpar" action="#{nwslet.limpar}" actionListener="#{nwslet.logar}" />
 
-		<h:outputLabel id="opl_result" value="Inserido com Sucesso!"
-			style="font-color:red" rendered="#{nwslet.sucesso eq 'Sim'}" />
+		<h:outputLabel id="opl_result" value="Inserido com Sucesso!" style="font-color:red" rendered="#{nwslet.sucesso eq 'Sim'}" />
 	</h:form>
-
 	<h:form id="frm_lista_newsletter">
-		<h:dataTable id="dtt_lista_newletters" var="nlt" title="Lista E-mails"
-			value="#{nwslet.listMail}" rendered="#{not empty nwslet.listMail}"
-			border="2">
+		
+		<h:dataTable id="dtt_lista_newletters" var="nlt" title="Lista E-mails" 	value="#{nwslet.listMail}" rendered="#{not empty nwslet.listMail}" border="2">
 			<h:column>
 				<f:facet name="header">
 					<h:outputText value="E-mail" />
 				</f:facet>
 				<h:outputText value="#{nlt}" />
 			</h:column>
-		</h:dataTable>
+		</h:dataTable>		
 	</h:form>
-	<h:form id="frm_lista_logs">
-		<h:dataTable id="dtt_logs" var="logs" title="Lista Logs"
-			value="#{nwslet.listLogs}" rendered="#{not empty nwslet.listLogs}"
-			border="2">
+	<h:form id="frm_lista_logs">	
+		<h:dataTable id="dtt_logs" var="logs" title="Lista Logs" value="#{nwslet.listLogs}" rendered="#{not empty nwslet.listLogs}"	border="2">
 			<h:column>
 				<f:facet name="header">
 					<h:outputText value="Data Evento" />
@@ -91,7 +80,5 @@
 
 		</h:dataTable>
 	</h:form>
-
-
 </h:body>
 </html>
