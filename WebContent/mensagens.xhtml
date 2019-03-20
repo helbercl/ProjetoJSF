@@ -10,22 +10,29 @@
 </h:head>
 <h:body>
 	<h:form id="frm_tabelas">
-	 <h:messages />
+		<h:messages />
 		<h:panelGrid columns="2">
+			
 			<f:facet name="header">
-              Cadastro de novo Usuario
+              Cadastro de novo usuário do sistema.
             </f:facet>
-			<h:outputLabel id="opl_nome" for="ipt_nome" value="Nome Completo:" />
+			
+			<h:outputLabel id="opl_nome" for="ipt_nome" value="Nome:" />
+			
 			<h:panelGroup>
-				<h:inputText id="ipt_nome" value="#{formularioMensagem.nome}"/>
+				<h:inputText id="ipt_nome" value="#{formularioMensagem.nome}" />
 				<h:graphicImage alt="Imagem" value="/imagens/duvida.png" height="20px" title="Informe seu nome completo." />
 			</h:panelGroup>
+			
 			<h:outputLabel id="opt_mail" for="ipt_mail" value="E-mail:" />
-			<h:inputText id="ipt_mail" value="#{formularioMensagem.mail}"/>
+			<h:inputText id="ipt_mail" value="#{formularioMensagem.mail}" />
+			
 			<h:outputLabel id="opl_senha" for="ips_senha" value="Senha:" />
-			<h:inputSecret id="ips_senha" value="#{formularioMensagem.senha}"/>
+			<h:inputSecret id="ips_senha" value="#{formularioMensagem.senha}" />
+			
 			<h:outputLabel />
-			<h:commandButton id="cmb_gravar" value="Gravar" action="#{formularioMensagem.cadastrar}" />
+			<h:commandButton id="cmb_gravar" value="Gravar"
+				action="#{formularioMensagem.cadastrar}" />
 
 		</h:panelGrid>
 	</h:form>

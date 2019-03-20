@@ -21,7 +21,7 @@ public class FormularioMensagensBean implements Serializable {
 
 	public void cadastrar() {
 		if (this.getNome() == "" || this.getNome() == null || this.getNome().length() < 10) {
-			this.adicionarMensagem("frm_tabelas:opl_nome", FacesMessage.SEVERITY_ERROR, "Nome Incomplento",
+			this.adicionarMensagem("frm_tabelas:opl_nome", FacesMessage.SEVERITY_ERROR, "Nome Incompleto",
 					"Favor informar seu nome completo.");
 		}
 		if (this.hojeDiaDescanso()) {
