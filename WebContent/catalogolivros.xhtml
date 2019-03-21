@@ -9,31 +9,30 @@
 </head>
 <body>
 	<h:form id="frm_catalogo_livros">
+	    <h:messages errorStyle="color:red" fatalStyle="color:gray" infoStyle="color:green" warnStyle="color:range" showDetail="true" globalOnly="true"/>
 		<h:commandLink value="Ajuda" action="help/help?faces-redirect=true" />
-		<br></br>
-		<h:commandLink value="Ajuda Redirect Classe"
-			action="#{catalogolivros.obterAjuda}" />
+		<br/>
+		<h:commandLink value="Ajuda Redirect Classe" action="#{catalogolivros.obterAjuda}" />
 		<h:panelGrid columns="2">
 			<h:column>
 				<h:outputLabel for="ipt_titulo" value="Titulo :" />
-				<h:inputText id="ipt_titulo" value="#{catalogolivros.livro.titulo}" 
-				size="40" title="Informe o Titulo" maxlength="40"/>
+				<h:inputText id="ipt_titulo" value="#{catalogolivros.livro.titulo}" size="40" title="Informe o Titulo" maxlength="40"/>
+				<h:message for="ipt_titulo" errorStyle="color:red" fatalStyle="color:gray" infoStyle="color:green" warnStyle="color:range" />
 			</h:column>
 
-			<br></br>
+			<br/>
 			<h:column>
 				<h:outputLabel for="ipt_autor" value="Autor :" />
-				<h:inputText id="ipt_autor" value="#{catalogolivros.livro.autores}" 
-				size="40" title="Informe o Autor" maxlength="40"/>
+				<h:inputText id="ipt_autor" value="#{catalogolivros.livro.autores}" size="40" title="Informe o Autor" maxlength="40"/>
+				<h:message for="ipt_autor" errorStyle="color:red" fatalStyle="color:gray" infoStyle="color:green" warnStyle="color:range" />
 			</h:column>
-			<br></br>
+			<br/>
 			<h:column>
 				<h:outputLabel for="ipt_assunto" value="Assunto :" />
-				<h:inputText id="ipt_assunto"
-					value="#{catalogolivros.livro.assuntos}" 
-					size="40" title="Informe o Assunto"/>
+				<h:inputText id="ipt_assunto"	value="#{catalogolivros.livro.assuntos}" size="40" title="Informe o Assunto"/>
+								<h:message for="ipt_assunto" errorStyle="color:red" fatalStyle="color:gray" infoStyle="color:green" warnStyle="color:range" />
 			</h:column>
-			<br></br>
+			<br/>
 			<h:column>
 				<h:commandButton id="cmb_gravar" action="#{catalogolivros.inserir}" actionListener="#{catalogolivros.logarAcoes}"
 					value="Gravar" />
