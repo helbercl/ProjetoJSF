@@ -9,34 +9,47 @@
 	<title>Tabela de Dados - Data Table</title>
 </h:head>
 <h:body>
-    <h:form id="frm_tabela_dados">
-        <h:commandButton id="cmb_consultar" value="Consultar Clientes" action="#{consultaclientesbean.consultarClientes}"/>
-        <br/>
-        <h:dataTable value="#{consultaclientesbean.listaClientes}" var="clientes" 
-        title="Lista Clientes" border="1" rendered="#{not empty consultaclientesbean.listaClientes}">
-        
-           <h:column>
-             <f:facet name="header" >
-              <h:outputLabel value="Codigo" />
-             </f:facet>
-             <h:outputText value="#{clientes.codigo}"/>
-           </h:column>
-           
-           <h:column>
-              <f:facet name="header">
-                <h:outputLabel value="Nome"/>
-              </f:facet>
-              <h:outputText value="#{clientes.nome}"/>
-           </h:column>
-           
-           <h:column>
-             <f:facet name="header">
-               <h:outputLabel value="Cidade"/>
-             </f:facet>
-             <h:outputText value="#{clientes.cidade}"/>
-           </h:column>
-           
-        </h:dataTable>
-    </h:form>
+	<h:form id="frm_tabela_dados">
+		<h:commandButton id="cmb_consultar" value="Consultar Clientes"
+			action="#{consultaclientesbean.consultarClientes}" />
+		<br />
+		<h:dataTable value="#{consultaclientesbean.listaClientes}"
+			var="clientes" title="Lista Clientes" 
+			rendered="#{not empty consultaclientesbean.listaClientes}" width="500px">
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputLabel value="Codigo" />
+				</f:facet>
+				<!--  <h:outputText value="#{clientes.codigo}"/> -->
+				<h:inputText value="#{clientes.codigo}" size="2" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputLabel value="Nome" />
+				</f:facet>
+
+				<h:outputLink
+					value="http://www.google.com.br/search?q=#{clientes.nome}">
+					<h:outputText value="#{clientes.nome}" />
+				</h:outputLink>
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputLabel value="Cidade" />
+				</f:facet>
+				<h:outputText value="#{clientes.cidade}" />
+				<h:outputLink	value="https://www.google.com.br/search?tbm=isch&amp;q=#{clientes.cidade}">
+					 <h:graphicImage value="/imagens/pesquisar.png" />		
+				</h:outputLink>
+			</h:column>
+
+		</h:dataTable>
+		<h:commandButton value="Salvar"
+			action="#{consultaclientesbean.salvar}"
+			rendered="#{not empty consultaclientesbean.listaClientes}" />
+	</h:form>
 </h:body>
 </html>
