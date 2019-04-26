@@ -42,25 +42,40 @@ public class EstoqueBean {
     }
 
     private boolean validarCampos() {
+
         boolean camposChecados = true;
         String summaryDefault = "Campo Obrigatório!";
         try {
-            if ("".equals(item.getCodigoProduto())) {
+
+            if ("".equals(item.getCodigoProduto()) && "".equals(item.getDescricaoProduto())
+                    && "".equals(item.getQuantidade()) && "".equals(item.getValorUnitario())
+                    && "".equals(item.getDataChecagem())) {
+                log.logAcao(null, FacesMessage.SEVERITY_INFO, "Campos Obrigatorios!",
+                        "Campos Obrigatorios não preenchidos!");
+                camposChecados = false;
+            } else if ("".equals(item.getCodigoProduto()) || item.getCodigoProduto() == null) {
                 log.logAcao("frm_estoque:ipt_codigo", FacesMessage.SEVERITY_INFO, summaryDefault,
                         "Codigo do Produto deve ser informado!");
-                camposChecados = false;
+
             } else if ("".equals(item.getDescricaoProduto())) {
                 log.logAcao("frm_estoque:ipt_descricao", FacesMessage.SEVERITY_INFO, summaryDefault,
                         "Descrição do Produto deve ser informado!");
-                camposChecados = false;
-            } else if ("".equals(item.getQuantidade()) || item.getQuantidade() == 0) {
+
+            } else if (item.getQuantidade() == null) {
                 log.logAcao("frm_estoque:ipt_quantidade", FacesMessage.SEVERITY_INFO, summaryDefault,
                         "Quantidade do Produto deve ser informado!");
-                camposChecados = false;
+
+            } else if (item.getValorUnitario() == null) {
+                log.logAcao("frm_estoque:ipt_valor", FacesMessage.SEVERITY_INFO, summaryDefault,
+                        "Valor Unitário deve ser informado!");
+            } else if (item.getDataChecagem() == null) {
+                log.logAcao("frm_estoque:ipt_data_checagem", FacesMessage.SEVERITY_INFO, summaryDefault,
+                        "Data Checagem deve ser informado!");
             }
 
         } catch (Exception e) {
             // TODO: handle exception
+            log.logAcao(null, FacesMessage.SEVERITY_ERROR, "Erro!", "Erro Detalhado:" + e.getMessage());
             camposChecados = false;
         }
         return camposChecados;
