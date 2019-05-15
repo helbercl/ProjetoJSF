@@ -16,11 +16,12 @@
 
 .campo:focus {
 	background-color: yellow;
+	padding: 120px;
 }
 </style>
 	<script>
 		}
-		if (campoEmailCompleto.value =='' || campoEmailCompleto== null) {// verifica se seu valor é vazio
+		if (campoEmailCompleto.value =='' || campoEmailCompleto== null ||campoEmailCompleto='@dominio.com') {// verifica se seu valor é vazio
 			alert('Informe seu e-mail!');//Mostra Mensagem
 			return false; // retorna falso
 		}

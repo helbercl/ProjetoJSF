@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Novo Lançamento</title>
+</h:head>
+<h:body>
+	<h1>Novo lançamento</h1>
+	<h:form id="frm_lancamento">
+		<!-- Navegação Implicita - Chamara a propria tela -->
+		<h:button value="Novo" outcome="cadastrolancamento" />
+		<h:button value="Consulta" />
+		<!-- Navegação Implicita - Chamara a propria tela -->
+
+		<h:messages id="msgs_geral" showDetail="false" showSummary="true"
+			styleClass="form-messages" errorClass="error" infoClass="info"
+			warnClass="" />
+
+		<h:panelGrid id="pgr_lancamento" columns="2" styleClass="form-grid"
+			columnClasses="label,campo">
+
+			<h:outputLabel value="Tipo" />
+			<h:selectOneRadio id="onr_tipo_lancamento"
+				value="#{cadastroLancamentoBean.lancamento.tipo}" required="true"
+				label="Tipo de Lançamento">
+				<f:selectItems value="#{cadastroLancamentoBean.tipoLancamentos}"
+					var="tipoLancamento" itemLabel="#{tipoLancamento.descricao}"
+					itemValue="tipoLancamento" />
+
+				<!-- <f:selectItem itemLabel="Receita" itemValue="Receita" /> -->
+				<!--<f:selectItem itemLabel="Despesa" itemValue="Despesa" /> -->
+			</h:selectOneRadio>
+
+			<h:outputLabel value="Pessoa:" />
+			<h:selectOneMenu id="onm_pessoas"
+				value="#{cadastroLancamentoBean.lancamento.pessoa}" label="Pessoas"
+				required="true">
+				<!-- referencia de field que preenchera na classe -->
+
+				<f:selectItems value="#{cadastroLancamentoBean.gestaoPessoas}"
+					var="pessoas" itemLabel="#{pessoas.nome}" />
+
+			</h:selectOneMenu>
+
+			<h:outputLabel value="Descrição:" />
+			<h:inputText id="ipt_descricao" size="60"
+				value="#{cadastroLancamentoBean.lancamento.descricao}" />
+
+			<h:outputLabel value="Valor:" />
+			<h:inputText id="ipt_valor" size="12" />
+
+			<h:outputLabel value="Data Vencimento:" />
+			<h:inputText id="ipt_dt_vencimento" size="12" />
+
+			<h:outputLabel />
+			<h:panelGroup>
+				<h:selectBooleanCheckbox id="pagoCheckBox" />
+				<h:outputLabel value="Conta Paga" for="pagoCheckBox" />
+			</h:panelGroup>
+
+			<h:outputLabel value="Data Pagamento:" />
+			<h:inputText id="ipt_dt_pagamento" size="12" />
+
+			<h:outputLabel />
+			<h:commandButton id="btn_cadastrar" value="Cadastrar"
+				action="#{cadastroLancamentoBean.gravar}" />
+		</h:panelGrid>
+	</h:form>
+	<h:form id="frm_consulta">
+	   <h:dataTable id="dtb_lancamentos" var="lancamentos" value="#{cadastroLancamentoBean.lancamentos}" rendered="#{not empty cadastroLancamentoBean.lancamentos}" >
+	     <h:column>
+	     <f:facet name="header">
+	        <h:outputLabel value="Codigo"/>	      
+	     </f:facet>
+	       <h:outputText value="#{lancamentos.codigo}"/>
+	    </h:column> 
+	    <h:column>
+	      <f:facet name="header">
+	        <h:outputLabel value="Nome"/>
+	      </f:facet>
+	      <h:outputText value="#{lancamentos.pessoa.nome}"/>
+	    </h:column>
+	   </h:dataTable>
+	</h:form>
+</h:body>
+</html>

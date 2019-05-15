@@ -1,3 +1,4 @@
+package com.algaworks.cursojsf2.view1.model;
 import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;

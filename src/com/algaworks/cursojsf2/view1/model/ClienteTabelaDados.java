@@ -1,4 +1,4 @@
-package com.algaworks.cursojsf2.model;
+package com.algaworks.cursojsf2.view1.model;
 
 public class ClienteTabelaDados {
   private Integer codigo;

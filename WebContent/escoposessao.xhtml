@@ -110,7 +110,9 @@
 				<f:facet name="header">
 					<h:outputText value="Data Evento" />
 				</f:facet>
+				<f:convertDateTime dateStyle="medium" pattern="dd/MM/yyyy">
 				<h:outputText value="#{logs.dataEvento}" />
+				</f:convertDateTime>
 			</h:column>
 			<h:column>
 				<f:facet name="header">
