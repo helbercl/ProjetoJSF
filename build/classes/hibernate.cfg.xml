@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+      <property name="hibernate.connection.driver.class">org.postgresql.Driver</property>
+      <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/cursojsf</property>
+      <property name="hibernate.connection.username">postgres</property>
+      <property name="hibernate.connection.password">postgres</property>
+      
+      <!-- indicando qual o banco de dados que ORM ira conversar. Até o momento não sabe.
+      Saber como construira os MDL ou DDL porque há particularidades para cada banco.-->
+      <property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+      
+      <!-- Ativar somente em ambiente de desenvolvimento.Todos comando sql gerados sera exibido na console. Em produção False-->
+      <property name="show_sql">true</property>
+      
+      <!-- Para formatar os sqls mostrados na console de forma organizada.Em produção False -->
+      <property name="format_sql">true</property>
+    </session-factory>
+</hibernate-configuration>

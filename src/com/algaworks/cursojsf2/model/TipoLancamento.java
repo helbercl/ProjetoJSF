@@ -1,8 +1,8 @@
-package com.algaworks.cursojsf2.view1.model;
+package com.algaworks.cursojsf2.model;
 
 public enum TipoLancamento {
 
-	RECEITA("Receita"), DESPESA("Despesa");
+	RECEITA("Receita"), DESPESA("Despesa"),INVESTIMENTO("Investimento");
 
 	private String descricao;
     //construtor

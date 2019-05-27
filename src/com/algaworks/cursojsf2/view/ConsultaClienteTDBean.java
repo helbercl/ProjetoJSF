@@ -6,7 +6,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import com.algaworks.cursojsf2.view1.model.ClienteTabelaDados;
+import com.algaworks.cursojsf2.model.ClienteTabelaDados;
 @ManagedBean(name="consultaclientesbean")
 @ViewScoped
 public class ConsultaClienteTDBean {

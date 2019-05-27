@@ -1,4 +1,4 @@
-package com.algaworks.cursojsf2.view1.model;
+package com.algaworks.cursojsf2.model;
 
 import java.io.Serializable;
 

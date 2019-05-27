@@ -10,7 +10,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.ValueChangeEvent;
 
-import com.algaworks.cursojsf2.view1.model.Produto;
+import com.algaworks.cursojsf2.model.Produto;
 
 @ManagedBean(name = "gestaoproduto")
 @SessionScoped

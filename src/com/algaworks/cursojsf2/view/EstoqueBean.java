@@ -8,7 +8,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
 
-import com.algaworks.logs.Logs;
+import com.algaworks.cursojsf2.logs.Logs;
 
 @ManagedBean(name = "estoqueBean")
 @ViewScoped

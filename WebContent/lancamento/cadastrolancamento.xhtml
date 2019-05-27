@@ -29,62 +29,115 @@
 				label="Tipo de Lançamento">
 				<f:selectItems value="#{cadastroLancamentoBean.tipoLancamentos}"
 					var="tipoLancamento" itemLabel="#{tipoLancamento.descricao}"
-					itemValue="tipoLancamento" />
-
+					itemValue="#{tipoLancamento}" />
 				<!-- <f:selectItem itemLabel="Receita" itemValue="Receita" /> -->
 				<!--<f:selectItem itemLabel="Despesa" itemValue="Despesa" /> -->
 			</h:selectOneRadio>
-
 			<h:outputLabel value="Pessoa:" />
-			<h:selectOneMenu id="onm_pessoas"
-				value="#{cadastroLancamentoBean.lancamento.pessoa}" label="Pessoas"
-				required="true">
-				<!-- referencia de field que preenchera na classe -->
-
-				<f:selectItems value="#{cadastroLancamentoBean.gestaoPessoas}"
-					var="pessoas" itemLabel="#{pessoas.nome}" />
-
-			</h:selectOneMenu>
+			<!--<h:selectOneMenu id="onm_pessoas" value="#{cadastroLancamentoBean.lancamento.pessoa}">
+			  <f:converter binding="#{cadastroLancamentoBean.lancamento.pessoa}" >
+					<f:selectItems value="#{cadastroLancamentoBean.gestaoPessoas}"
+					var="pessoas" itemLabel="#{pessoas.nome}" itemValue="#{pessoas}" />
+			  </f:converter>
+			</h:selectOneMenu> -->
 
 			<h:outputLabel value="Descrição:" />
 			<h:inputText id="ipt_descricao" size="60"
-				value="#{cadastroLancamentoBean.lancamento.descricao}" />
+				value="#{cadastroLancamentoBean.lancamento.descricao}"
+				required="true" label="Descrição" />
 
 			<h:outputLabel value="Valor:" />
-			<h:inputText id="ipt_valor" size="12" />
+			<h:inputText id="ipt_valor" size="12" required="true" label="Valor">
+				<f:convertNumber locale="pt_BR" maxFractionDigits="2"
+					minFractionDigits="2" for="ipt_valor" />
+				<f:validateDoubleRange minimum="0" for="ipt_valor" />
+			</h:inputText>
+
 
 			<h:outputLabel value="Data Vencimento:" />
-			<h:inputText id="ipt_dt_vencimento" size="12" />
+			<h:inputText id="ipt_dt_vencimento" size="12"
+				value="#{cadastroLancamentoBean.lancamento.dataVencimento}"
+				required="true" label="Data Vencimento">
+				<f:convertDateTime pattern="dd/MM/yyyy" />
+			</h:inputText>
 
 			<h:outputLabel />
 			<h:panelGroup>
-				<h:selectBooleanCheckbox id="pagoCheckBox" />
+				<h:selectBooleanCheckbox id="pagoCheckBox"
+					value="#{cadastroLancamentoBean.lancamento.pago}" />
 				<h:outputLabel value="Conta Paga" for="pagoCheckBox" />
 			</h:panelGroup>
 
 			<h:outputLabel value="Data Pagamento:" />
-			<h:inputText id="ipt_dt_pagamento" size="12" />
+			<h:inputText id="ipt_dt_pagamento" size="12"
+				value="#{cadastroLancamentoBean.lancamento.dataPagamento}"
+				label="Data Pagamento">
+				<f:convertDateTime pattern="dd/MM/yyyy" />
+			</h:inputText>
 
 			<h:outputLabel />
 			<h:commandButton id="btn_cadastrar" value="Cadastrar"
 				action="#{cadastroLancamentoBean.gravar}" />
 		</h:panelGrid>
 	</h:form>
+	<!-- Grid Lista Lançamentos -->
 	<h:form id="frm_consulta">
-	   <h:dataTable id="dtb_lancamentos" var="lancamentos" value="#{cadastroLancamentoBean.lancamentos}" rendered="#{not empty cadastroLancamentoBean.lancamentos}" >
-	     <h:column>
-	     <f:facet name="header">
-	        <h:outputLabel value="Codigo"/>	      
-	     </f:facet>
-	       <h:outputText value="#{lancamentos.codigo}"/>
-	    </h:column> 
-	    <h:column>
-	      <f:facet name="header">
-	        <h:outputLabel value="Nome"/>
-	      </f:facet>
-	      <h:outputText value="#{lancamentos.pessoa.nome}"/>
-	    </h:column>
-	   </h:dataTable>
+		<h:dataTable id="dtb_lancamentos" var="lancamentos" border="1" first="0"
+			value="#{cadastroLancamentoBean.lancamentos}"
+			rendered="#{not empty cadastroLancamentoBean.lancamentos}">
+			<h:column>
+				<f:facet name="header">
+					<h:outputLabel value="Codigo" />
+				</f:facet>
+				<h:outputText value="#{lancamentos.codigo}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputLabel value="Codigo" />
+				</f:facet>
+				<h:outputText value="#{lancamentos.pessoa.codigo}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputLabel value="Nome" />
+				</f:facet>
+				<h:outputText value="#{lancamentos.pessoa.nome}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputLabel value="Tipo" />
+				</f:facet>
+				<h:outputText value="#{lancamentos.tipo}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputLabel value="Descricao" />
+				</f:facet>
+				<h:outputText value="#{lancamentos.descricao}"></h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputLabel value="Valor" />
+				</f:facet>
+				<h:outputText value="#{lancamentos.valor}" />
+			</h:column>
+			<h:column>
+
+				<f:facet name="header">
+					<h:outputLabel value="Data Vencimento" />
+				</f:facet>
+				<h:outputText value="#{lancamentos.dataVencimento}">
+					<f:convertDateTime pattern="dd/MM/yyyy" type="both" />
+				</h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputLabel value="Pago?" />
+				</f:facet>
+				<h:outputText value="#{lancamentos.pago}" />
+			</h:column>
+
+		</h:dataTable>
 	</h:form>
 </h:body>
 </html>

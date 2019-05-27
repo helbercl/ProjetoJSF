@@ -1,4 +1,4 @@
-package com.algaworks.logs;
+package com.algaworks.cursojsf2.logs;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;

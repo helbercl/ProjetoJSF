@@ -18,7 +18,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.ValueChangeEvent;
 
-import com.algaworks.cursojsf2.view1.model.Livros;
+import com.algaworks.cursojsf2.model.Livros;
 
 @ManagedBean(name = "catalogolivros")
 //@RequestScoped
