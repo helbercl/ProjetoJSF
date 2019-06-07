@@ -5,8 +5,8 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-import com.algaworks.cursojsf2.model.Lancamento;
-import com.algaworks.cursojsf2.util.copy.Repositorios;
+import com.algaworks.cursojsf2.util.Repositorios;
+
 
 @FacesConverter(forClass = Lancamento.class)
 public class LancamentoConverter implements Converter{
