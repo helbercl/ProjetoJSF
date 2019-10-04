@@ -45,13 +45,13 @@ public class EstoqueBean {
         String summaryDefault = "Campo Obrigatório!";
         try {
 
-            if ("".equals(item.getCodigoProduto()) && "".equals(item.getDescricaoProduto())
-                    && "".equals(item.getQuantidade()) && "".equals(item.getValorUnitario())
-                    && "".equals(item.getDataChecagem())) {
+            if ("".equals(item.getCodigoProduto().toString()) && "".equals(item.getDescricaoProduto())
+                    && "".equals(item.getQuantidade().toString()) && "".equals(item.getValorUnitario().toString())
+                    && "".equals(item.getDataChecagem().toString())) {
                 log.logAcao(null, FacesMessage.SEVERITY_INFO, "Campos Obrigatorios!",
                         "Campos Obrigatorios não preenchidos!");
                 camposChecados = false;
-            } else if ("".equals(item.getCodigoProduto()) || item.getCodigoProduto() == null) {
+            } else if ("".equals(item.getCodigoProduto().toString()) || item.getCodigoProduto() == null) {
                 log.logAcao("frm_estoque:ipt_codigo", FacesMessage.SEVERITY_INFO, summaryDefault,
                         "Codigo do Produto deve ser informado!");
 
@@ -72,7 +72,7 @@ public class EstoqueBean {
             }
 
         } catch (Exception e) {
-            // TODO: handle exception
+            
             log.logAcao(null, FacesMessage.SEVERITY_ERROR, "Erro!", "Erro Detalhado:" + e.getMessage());
             camposChecados = false;
         }

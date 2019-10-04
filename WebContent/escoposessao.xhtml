@@ -32,7 +32,7 @@
 				<h:commandButton id="cmb_clean" value="Limpar"
 					action="#{gestaoproduto.clean}"
 					actionListener="#{gestaoproduto.logarAcoes}" />
-					<!-- Evento de mudança de ação Action Listener xige um ActionEvent no metodo-->
+				<!-- Evento de mudança de ação Action Listener xige um ActionEvent no metodo-->
 
 				<h:commandButton id="cmb_ajuda" value="Ajuda"
 					action="help/help_gestao_produtos?faces-redirect=true">
@@ -44,29 +44,34 @@
 		</h:panelGroup>
 	</h:form>
 	<br />
-	
+
 	<h:form id="frm_pesquisar_produtos">
 		<h:panelGrid columns="1">
 			<h:panelGroup>
 				<!-- propriedade valueChangeListener faz um link/amarração com metodo que será chamado quando  
 				    houver modificações de valor no campo inputext   -->
-				<h:outputLabel value="Pesquisar Por Fabricante:" for="opt_pesquisar_fabricante" /><br></br>
-				 
-				<h:inputText id="ipt_pesquisar_produto" value="#{gestaoproduto.produtoPesquisado}"
-					valueChangeListener="#{gestaoproduto.nomePesquisaAlterado}" 
-					onchange="submit()"/>
-					<!-- Evento de mudança de valor Value Change Listener  exige um ValueChangeEvent no metodo-->
-				<h:commandButton value="Pesquisar" action="#{gestaoproduto.pesquisar}" />
-				
+				<h:outputLabel value="Pesquisar Por Fabricante:"
+					for="opt_pesquisar_fabricante" />
+				<br></br>
+
+				<h:inputText id="ipt_pesquisar_produto"
+					value="#{gestaoproduto.produtoPesquisado}"
+					valueChangeListener="#{gestaoproduto.nomePesquisaAlterado}"
+					onchange="submit()" />
+				<!-- Evento de mudança de valor Value Change Listener  exige um ValueChangeEvent no metodo-->
+				<h:commandButton value="Pesquisar"
+					action="#{gestaoproduto.pesquisar}" />
+
 			</h:panelGroup>
 		</h:panelGrid>
 	</h:form>
-	
+
 	<br />
 	<br />
 	<h:form id="frm_listar_produtos">
-		<h:dataTable var="produtos" value="#{gestaoproduto.listProdutosFiltrados}"
-			rendered="#{not empty gestaoproduto.listProdutosFiltrados}" 
+		<h:dataTable var="produtos"
+			value="#{gestaoproduto.listProdutosFiltrados}"
+			rendered="#{not empty gestaoproduto.listProdutosFiltrados}"
 			border="1" title="Lista de Produtos">
 			<h:column>
 				<f:facet name="header">
@@ -90,11 +95,12 @@
 				<f:facet name="header">
 					<h:outputText value="Excluir" />
 				</f:facet>
-				<h:commandButton id="cmb_excluir" action="#{gestaoproduto.excluir}"  value="Excluir"
-				actionListener="#{gestaoproduto.logarAcoes}">
-				   <f:setPropertyActionListener value="#{produtos}" target="#{gestaoproduto.produtoSelecionado}" />
+				<h:commandButton id="cmb_excluir" action="#{gestaoproduto.excluir}"
+					value="Excluir" actionListener="#{gestaoproduto.logarAcoes}">
+					<f:setPropertyActionListener value="#{produtos}"
+						target="#{gestaoproduto.produtoSelecionado}" />
 				</h:commandButton>
-				
+
 			</h:column>
 		</h:dataTable>
 	</h:form>
@@ -104,14 +110,14 @@
 	<br />
 	<h:form id="frm_lista_log">
 		<h:dataTable var="logs" value="#{gestaoproduto.listLogs}"
-			rendered="#{not empty gestaoproduto.listLogs}"
-			border="1" title="Lista Logs">
+			rendered="#{not empty gestaoproduto.listLogs}" border="1"
+			title="Lista Logs">
 			<h:column>
 				<f:facet name="header">
 					<h:outputText value="Data Evento" />
 				</f:facet>
 				<f:convertDateTime dateStyle="medium" pattern="dd/MM/yyyy">
-				<h:outputText value="#{logs.dataEvento}" />
+					<h:outputText value="#{logs.dataEvento}" />
 				</f:convertDateTime>
 			</h:column>
 			<h:column>
@@ -127,13 +133,15 @@
 				<h:outputText value="#{logs.componente}" />
 			</h:column>
 			<h:column>
-			  <f:facet name="header">
-			    <h:outputText value="Excluir" />
-			  </f:facet>
-			  <h:commandButton id="cmb_excluir_log" value="Excluir" action="#{gestaoproduto.excluirLogs}" 
-			  actionListener="#{gestaoproduto.logarAcoes}"> 
-			    <f:setPropertyActionListener value="#{logs}" target="#{gestaoproduto.logSelecionado}" />
-			  </h:commandButton>
+				<f:facet name="header">
+					<h:outputText value="Excluir" />
+				</f:facet>
+				<h:commandButton id="cmb_excluir_log" value="Excluir"
+					action="#{gestaoproduto.excluirLogs}"
+					actionListener="#{gestaoproduto.logarAcoes}">
+					<f:setPropertyActionListener value="#{logs}"
+						target="#{gestaoproduto.logSelecionado}" />
+				</h:commandButton>
 			</h:column>
 
 		</h:dataTable>

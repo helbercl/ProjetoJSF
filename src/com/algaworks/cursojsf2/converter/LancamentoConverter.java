@@ -5,6 +5,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
+import com.algaworks.cursojsf2.repository.Lancamento;
 import com.algaworks.cursojsf2.util.Repositorios;
 
 
@@ -15,7 +16,7 @@ public class LancamentoConverter implements Converter{
 	@Override
 	public Object getAsObject(FacesContext arg0, UIComponent arg1, String arg2) {
 	    Lancamento retorno = null;
-	    com.algaworks.cursojsf2.respository.Lancamento lancamento = this.repositorioBean.getPessoa()
+	    //Lancamento lancamento = this.repositorioBean.getPessoa();
 		return null;
 	}
 

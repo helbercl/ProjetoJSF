@@ -14,8 +14,9 @@
 			action="#{consultaclientesbean.consultarClientes}" />
 		<br />
 		<h:dataTable value="#{consultaclientesbean.listaClientes}"
-			var="clientes" title="Lista Clientes" 
-			rendered="#{not empty consultaclientesbean.listaClientes}" width="500%">
+			var="clientes" title="Lista Clientes"
+			rendered="#{not empty consultaclientesbean.listaClientes}"
+			width="500%">
 
 			<h:column>
 				<f:facet name="header">
@@ -41,8 +42,9 @@
 					<h:outputLabel value="Cidade" />
 				</f:facet>
 				<h:outputText value="#{clientes.cidade}" />
-				<h:outputLink	value="https://www.google.com.br/search?tbm=isch&amp;q=#{clientes.cidade}">
-					 <h:graphicImage value="/imagens/pesquisar.png" />		
+				<h:outputLink
+					value="https://www.google.com.br/search?tbm=isch&amp;q=#{clientes.cidade}">
+					<h:graphicImage value="/imagens/pesquisar.png" />
 				</h:outputLink>
 			</h:column>
 

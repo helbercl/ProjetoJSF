@@ -82,8 +82,8 @@
 	</h:form>
 	<!-- Grid Lista Lançamentos -->
 	<h:form id="frm_consulta">
-		<h:dataTable id="dtb_lancamentos" var="lancamentos" border="1" first="0"
-			value="#{cadastroLancamentoBean.lancamentos}"
+		<h:dataTable id="dtb_lancamentos" var="lancamentos" border="1"
+			first="0" value="#{cadastroLancamentoBean.lancamentos}"
 			rendered="#{not empty cadastroLancamentoBean.lancamentos}">
 			<h:column>
 				<f:facet name="header">

@@ -8,22 +8,27 @@
 </h:head>
 <h:body>
 	<h:form id="frm_login" style="align:center">
-	   <h:panelGrid columns="2" >
+		<h:panelGrid columns="2">
 			<h:outputLabel for="ipt_login" value="Login:" />
-			<h:inputText id="ipt_login" value="#{olamundo.login}" binding="#{olamundo.ipt_login}"/>
+			<h:inputText id="ipt_login" value="#{olamundo.login}"
+				binding="#{olamundo.ipt_login}" />
 			<h:outputLabel for="ipt_password" value="Senha :" />
-			<h:inputSecret id="ipt_password" value="#{olamundo.password}" binding="#{olamundo.ipt_password}" />
-			
+			<h:inputSecret id="ipt_password" value="#{olamundo.password}"
+				binding="#{olamundo.ipt_password}" />
+
 			<!-- a propriedade binding faz amarração entre o xhtml e backingbean usando o tipo de dado
 			na classe de acordo com o tipo de componente -->
-			
+
 			<h:commandButton id="cmb_record" value="Record"
-				action="#{olamundo.impress}" title="Gravar" binding="#{olamundo.botao}" />
-			
-			
-			<h:outputText value="#{olamundo.resposta}"	rendered="#{not empty olamundo.resposta}" />
-			<h:commandButton id="cmb_clean" value="Clean" 	action="#{olamundo.clean}" />
-     </h:panelGrid>
+				action="#{olamundo.impress}" title="Gravar"
+				binding="#{olamundo.botao}" />
+
+
+			<h:outputText value="#{olamundo.resposta}"
+				rendered="#{not empty olamundo.resposta}" />
+			<h:commandButton id="cmb_clean" value="Clean"
+				action="#{olamundo.clean}" />
+		</h:panelGrid>
 	</h:form>
 </h:body>
 </html>

@@ -7,42 +7,43 @@
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Checagem E Radios</title>
-	 <script src="js/validacoes.js"/>
+	<script src="js/validacoes.js" />
 </h:head>
 <h:body>
 	<h:form id="frm_radioschecagem">
 
 		<h:panelGrid id="png_radio_check">
-   <div id="sexo">
-   Sexo:
-        <h:selectOneRadio id="sor_sexo" value="#{perfilUsuarioBean.sexo}"
-				layout="pageDirection">
-				<f:selectItem itemValue="M" itemLabel="Masculino" />
-				<f:selectItem itemValue="F" itemLabel="Feminino" />
-			</h:selectOneRadio>
-			<br></br>
-			<br></br>
-    </div>		
-    <div id="newslatter">	
-			Gostaria de Receber Novidades a empresa por E-mail:
-			<h:selectBooleanCheckbox id="mail_newsletter" value="#{perfilUsuarioBean.receberNovidades}" onclick="habilitarDiv('ling')"/>		
-		<br></br>
-		<br></br>		
-	</div>
-	
-	<div id="ling" style="display:none">
-         Linguagens Favoritas:
-		   <h:selectManyCheckbox id="smcb_linguagem" layout="lineDirection" 
-				value="#{perfilUsuarioBean.linguagemFavoritas}">
-				<f:selectItem itemValue="Java" />
-				<f:selectItem itemValue="Python"/>
-				<f:selectItem itemValue="Ruby"/>
-				<f:selectItem itemValue="C++"/>
-				<f:selectItem itemValue="C#"/>
-			</h:selectManyCheckbox>
-	</div>		
-			<h:commandButton id="cmb_enviar" value="Enviar" action="#{perfilUsuarioBean.enviar}" />
-			<h:commandButton id="cmb_limpar" value="Limpar Campos" type="reset"/>
+			<div id="sexo">
+				Sexo:
+				<h:selectOneRadio id="sor_sexo" value="#{perfilUsuarioBean.sexo}"
+					layout="pageDirection">
+					<f:selectItem itemValue="M" itemLabel="Masculino" />
+					<f:selectItem itemValue="F" itemLabel="Feminino" />
+				</h:selectOneRadio>
+				<br></br> <br></br>
+			</div>
+			<div id="newslatter">
+				Gostaria de Receber Novidades a empresa por E-mail:
+				<h:selectBooleanCheckbox id="mail_newsletter"
+					value="#{perfilUsuarioBean.receberNovidades}"
+					onclick="habilitarDiv('ling')" />
+				<br></br> <br></br>
+			</div>
+
+			<div id="ling" style="display: none">
+				Linguagens Favoritas:
+				<h:selectManyCheckbox id="smcb_linguagem" layout="lineDirection"
+					value="#{perfilUsuarioBean.linguagemFavoritas}">
+					<f:selectItem itemValue="Java" />
+					<f:selectItem itemValue="Python" />
+					<f:selectItem itemValue="Ruby" />
+					<f:selectItem itemValue="C++" />
+					<f:selectItem itemValue="C#" />
+				</h:selectManyCheckbox>
+			</div>
+			<h:commandButton id="cmb_enviar" value="Enviar"
+				action="#{perfilUsuarioBean.enviar}" />
+			<h:commandButton id="cmb_limpar" value="Limpar Campos" type="reset" />
 		</h:panelGrid>
 	</h:form>
 </h:body>

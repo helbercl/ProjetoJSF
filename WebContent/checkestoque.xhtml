@@ -10,21 +10,26 @@
 </h:head>
 <h:body>
 	<h:form id="frm_estoque">
-	   <h:messages id="msg_geral"  errorStyle="color:red"  showDetail="true" showSummary="true" />
+		<h:messages id="msg_geral" errorStyle="color:red" showDetail="true"
+			showSummary="true" />
 		<h:panelGrid id="pngrid_estoque" columns="2">
 			<h:outputLabel value="Codigo Produto:" />
 			<h:panelGroup>
-				<h:inputText id="ipt_codigo" value="#{estoqueBean.item.codigoProduto}" />
-				<h:message for="ipt_codigo" showSummary="true" showDetail="true" errorStyle="color:red"  fatalStyle="color:purple" 
-				infoStyle="color:yellow" warnStyle="color:blue"/>
+				<h:inputText id="ipt_codigo"
+					value="#{estoqueBean.item.codigoProduto}" />
+				<h:message for="ipt_codigo" showSummary="true" showDetail="true"
+					errorStyle="color:red" fatalStyle="color:purple"
+					infoStyle="color:yellow" warnStyle="color:blue" />
 			</h:panelGroup>
 			<h:outputLabel value="Descrição:" />
 			<h:inputText id="ipt_descricao"
 				value="#{estoqueBean.item.descricaoProduto}" />
 			<h:outputLabel value="Quantidade:" />
 			<h:panelGroup>
-				<h:inputText id="ipt_quantidade" value="#{estoqueBean.item.quantidade}" />
-				<h:message for="ipt_quantidade" showSummary="true" showDetail="false"></h:message>
+				<h:inputText id="ipt_quantidade"
+					value="#{estoqueBean.item.quantidade}" />
+				<h:message for="ipt_quantidade" showSummary="true"
+					showDetail="false"></h:message>
 			</h:panelGroup>
 			<h:outputLabel value="Valor Unitario:" />
 			<h:panelGroup>
@@ -35,14 +40,17 @@
 			<h:outputLabel value="Data Checagem:" />
 			<h:panelGroup>
 				<h:inputText id="ipt_data_checagem"
-					value="#{estoqueBean.item.dataChecagem}" >
-				  <f:convertDateTime for="ipt_data_checagem" type="date" locale="pt_BR" dateStyle="medium" timeStyle="medium" pattern="dd/MM/yyyy" />	
-			    </h:inputText>
+					value="#{estoqueBean.item.dataChecagem}">
+					<f:convertDateTime for="ipt_data_checagem" type="date"
+						locale="pt_BR" dateStyle="medium" timeStyle="medium"
+						pattern="dd/MM/yyyy" />
+				</h:inputText>
 				<h:message for="ipt_data_checagem" showSummary="true"
 					showDetail="true" />
 			</h:panelGroup>
 			<h:outputLabel />
-			<h:commandButton id="btn_incluir" value="Gravar" action="#{estoqueBean.gravar}"/>
+			<h:commandButton id="btn_incluir" value="Gravar"
+				action="#{estoqueBean.gravar}" />
 		</h:panelGrid>
 	</h:form>
 </h:body>

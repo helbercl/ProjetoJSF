@@ -2,7 +2,7 @@ package com.algaworks.cursojsf2.util;
 
 import java.io.Serializable;
 
-import com.algaworks.cursojsf2.model.Pessoa;
+
 import com.algaworks.cursojsf2.model.Pessoas;
 
 public class Repositorios implements Serializable {

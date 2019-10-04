@@ -6,7 +6,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 @ManagedBean(name="formularioBean")
-@SessionScoped
+
 public class FormularioBean implements Serializable{
 	
 	private static final long serialVersionUID = 1L;

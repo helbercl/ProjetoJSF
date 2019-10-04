@@ -12,41 +12,44 @@
 	<h:form id="time_favorito">
 		<h1>Escolha seu time</h1>
 		<h:selectOneMenu id="time" value="#{timeFavoritoBean.time}">
-			<f:selectItem itemValue="Flamengo" itemLabel="Mengão"/>
-			<f:selectItem itemValue="Vasco" itemLabel="Vascão"/>
-			<f:selectItem itemValue="Palmeiras" itemLabel="Porcão"/>
-			<f:selectItem itemValue="Santos" itemLabel="Peixe"/>
-			<f:selectItem itemValue="São Paulo" itemLabel="Bambis"/>
+			<f:selectItem itemValue="Flamengo" itemLabel="Mengão" />
+			<f:selectItem itemValue="Vasco" itemLabel="Vascão" />
+			<f:selectItem itemValue="Palmeiras" itemLabel="Porcão" />
+			<f:selectItem itemValue="Santos" itemLabel="Peixe" />
+			<f:selectItem itemValue="São Paulo" itemLabel="Bambis" />
 			<f:selectItem itemValue="Fluminense" itemLabel="Fluzão" />
 			<f:selectItem itemValue="Internacional" itemLabel="Inter" />
 			<f:selectItem itemValue="Gremio" itemLabel="Gremio" />
-			<f:selectItem itemValue="Botafogo" itemLabel="Fogão"/>
-			<f:selectItem itemValue="Atletico Mineiro" itemLabel="Galinhada"/>
+			<f:selectItem itemValue="Botafogo" itemLabel="Fogão" />
+			<f:selectItem itemValue="Atletico Mineiro" itemLabel="Galinhada" />
 			<f:selectItem itemValue="Outro" />
 		</h:selectOneMenu>
 		<br></br>
 		<br></br>
 		<h:selectOneListbox id="linguagem" value="#{timeFavoritoBean.time}">
-		  <f:selectItem itemValue="Flamengo" itemLabel="Mengão"/>
-			<f:selectItem itemValue="Vasco" itemLabel="Vascão"/>
-			<f:selectItem itemValue="Palmeiras" itemLabel="Porcão"/>
-			<f:selectItem itemValue="Santos" itemLabel="Peixe"/>
-			<f:selectItem itemValue="São Paulo" itemLabel="Bambis"/>
+			<f:selectItem itemValue="Flamengo" itemLabel="Mengão" />
+			<f:selectItem itemValue="Vasco" itemLabel="Vascão" />
+			<f:selectItem itemValue="Palmeiras" itemLabel="Porcão" />
+			<f:selectItem itemValue="Santos" itemLabel="Peixe" />
+			<f:selectItem itemValue="São Paulo" itemLabel="Bambis" />
 			<f:selectItem itemValue="Fluminense" itemLabel="Fluzão" />
 			<f:selectItem itemValue="Internacional" itemLabel="Inter" />
 			<f:selectItem itemValue="Gremio" itemLabel="Gremio" />
-			<f:selectItem itemValue="Botafogo" itemLabel="Fogão"/>
-			<f:selectItem itemValue="Atletico Mineiro" itemLabel="Galinhada"/>
+			<f:selectItem itemValue="Botafogo" itemLabel="Fogão" />
+			<f:selectItem itemValue="Atletico Mineiro" itemLabel="Galinhada" />
 			<f:selectItem itemValue="Outro" />
 		</h:selectOneListbox>
-		
-		<h:commandButton value="Escolher" action="#{timeFavoritoBean.escolher}" />
-		
-		
-		<br></br><br></br>
+
+		<h:commandButton value="Escolher"
+			action="#{timeFavoritoBean.escolher}" />
+
+
+		<br></br>
+		<br></br>
 		<div title="Time Selecionado">
-		 <h:outputText value="#{timeFavoritoBean.time}" rendered="#{not empty timeFavoritoBean.time}" 
-		 style="background-color:red;font-color:white; font-size:32px; font-family=Arial"/>
+			<h:outputText value="#{timeFavoritoBean.time}"
+				rendered="#{not empty timeFavoritoBean.time}"
+				style="background-color:red;font-color:white; font-size:32px; font-family=Arial" />
 		</div>
 	</h:form>
 </h:body>

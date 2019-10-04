@@ -7,24 +7,25 @@
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Botões e Links</title>
+	<script type="text/javascript" language="javascript" src="js/validacoes.js"/>
+	
 </h:head>
 <h:body>
 	<h:form id="frm_buttons_links">
-    Nome:
-    <h:inputText id="ipt_nome" value="#{formularioBean.nome}" />
-    <br></br><br></br>
-	<h:commandButton id="cmb_inserir" value="Enviar" action="resposta?faces-redirect=true"/>
-	<br></br><br></br>
-	<h:commandButton value="Clean" type="reset"/>
-	<br></br>
-	<!-- Não submete dados -->	
-	<h:outputLink value="http://www.google.com" >Google
-	 <f:param name="q" value="Algaworks"/>
-	</h:outputLink>
-	<br></br>	
-	<br></br>	
-	<!-- Não submete dados -->
-	<h:link value="Ir para resultado" outcome="resposta" />   
+		<h:panelGrid id="pgrid_form" title="Cadastro" columns="2">
+		    Nome:
+		    <h:inputText id="ipt_nome" value="#{formularioBean.nome}" />
+			<h:commandButton id="cmb_inserir" value="Enviar"  action="resposta?faces-redirect=true"
+			onblur="return validarCamposEmBranco(this)"/>
+			<h:commandButton value="Clean" type="reset" />
+		</h:panelGrid>
+		
+		<!-- Não submete dados -->
+		<h:outputLink value="http://www.google.com">Google
+	       <f:param name="q" value="Algaworks" />
+		</h:outputLink>		
+		<!-- Não submete dados -->
+		<h:link value="Ir para resultado" outcome="resposta" />
 	</h:form>
 </h:body>
 </html>

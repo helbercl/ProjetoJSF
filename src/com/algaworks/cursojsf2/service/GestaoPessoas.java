@@ -7,7 +7,7 @@ import java.util.Map;
 
 import com.algaworks.cursojsf2.model.Pessoas;
 
-@Deprecated
+
 public class GestaoPessoas {
 	//Classe de Negocio
 	private static Map<Integer,Pessoas> pessoas= new HashMap<Integer, Pessoas>();

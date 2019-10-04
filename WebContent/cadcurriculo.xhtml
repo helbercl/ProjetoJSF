@@ -10,30 +10,37 @@
 </h:head>
 <h:body>
 	<h:form id="frm_curriculo">
-     <h:graphicImage alt="Imagem" value="/imagens/mint.jpg" /><br/>
+		<h:graphicImage alt="Imagem" value="/imagens/mint.jpg" />
+		<br />
 		<h:outputText
 			value="Cadastro Curriculo para vaga #{cadastroCurriculoBean.vaga}"
 			style="font-weight:bold ; font-size:25px" />
-		<br /><br />
-		<h:outputFormat value="Vaga: {0} - Cargo :{1}  - E-mail: {2}" style="color:red">
+		<br />
+		<br />
+		<h:outputFormat value="Vaga: {0} - Cargo :{1}  - E-mail: {2}"
+			style="color:red">
 			<f:param value="#{cadastroCurriculoBean.vaga}" />
 			<f:param value="#{cadastroCurriculoBean.cargo}" />
 			<f:param value="#{cadastroCurriculoBean.mail}" />
 		</h:outputFormat>
-		<br /><br />
+		<br />
+		<br />
 
 
-		<h:outputLabel value="E-mail :" for="ipt_mail" /><br/>
-		<h:inputText id="ipt_mail" size="60"/>
-		<br/>
-		<h:outputLabel value="Senha :" for="ipt_password" /><br/>
-		<h:inputSecret id="ipt_password" size="40"/>
-		<br/>
-		<h:outputLabel value="Qualificações :" for="opl_qualifications" /><br/>
+		<h:outputLabel value="E-mail :" for="ipt_mail" />
+		<br />
+		<h:inputText id="ipt_mail" size="60" />
+		<br />
+		<h:outputLabel value="Senha :" for="ipt_password" />
+		<br />
+		<h:inputSecret id="ipt_password" size="40" />
+		<br />
+		<h:outputLabel value="Qualificações :" for="opl_qualifications" />
+		<br />
 		<h:inputTextarea id="opl_qualifications" cols="60" rows="5" />
-		<br/>
-		<h:commandButton value="Cadastrar" />		
-		<h:commandButton value="Limpar" type="reset"/>
+		<br />
+		<h:commandButton value="Cadastrar" />
+		<h:commandButton value="Limpar" type="reset" />
 
 
 	</h:form>

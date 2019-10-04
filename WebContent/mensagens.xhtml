@@ -14,7 +14,7 @@
 		<h:messages id="msgs_frm_mensagens" showDetail="true"
 			showSummary="true" layout="list" errorStyle="color:red"
 			infoStyle="color:green" warnStyle="color:orange"
-			fatalStyle="color:gray" globalOnly="true"/>
+			fatalStyle="color:gray" globalOnly="true" />
 		<!-- Messages - Global - Não Associada a nenhum componente -Especifica vinculada a um componente- atriuto Global messages
 		 mostra todas as mensagens da fila independente do componente que foi criticado -->
 		<h:panelGrid columns="2">
@@ -32,7 +32,7 @@
 				<!-- Message messagem especifica para o componente com id x -->
 				<h:panelGroup>
 					<h:graphicImage alt="Imagem" value="/imagens/duvida.png"
-						 title="Informe seu nome completo." />
+						title="Informe seu nome completo." />
 					<h:message for="ipt_nome" infoStyle="color:green"
 						errorStyle="color:red" warnStyle="color:range"
 						fatalStyle="color:gray" />
@@ -55,12 +55,14 @@
 				<h:message for="ips_senha" infoStyle="color:green"
 					errorStyle="color:red" warnStyle="color:range"
 					fatalStyle="color:gray" />
-			</h:panelGroup>	
-			<h:outputLabel id="opl_ign_descanso" for="sor_ign_descanso" value="Ignorar Descanso ?"/>		
-            <h:selectOneRadio id="sor_ign_descanso" value="#{formularioMensagem.ignoreDescanso}">
-               <f:selectItem itemValue="true" itemLabel="Sim"/>
-               <f:selectItem itemValue="false" itemLabel="Não"/>
-            </h:selectOneRadio>
+			</h:panelGroup>
+			<h:outputLabel id="opl_ign_descanso" for="sor_ign_descanso"
+				value="Ignorar Descanso ?" />
+			<h:selectOneRadio id="sor_ign_descanso"
+				value="#{formularioMensagem.ignoreDescanso}">
+				<f:selectItem itemValue="true" itemLabel="Sim" />
+				<f:selectItem itemValue="false" itemLabel="Não" />
+			</h:selectOneRadio>
 			<h:outputLabel />
 			<h:commandButton id="cmb_gravar" value="Gravar"
 				action="#{formularioMensagem.cadastrar}" />

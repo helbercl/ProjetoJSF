@@ -9,49 +9,68 @@
 </head>
 <body>
 	<h:form id="frm_catalogo_livros">
-	    <h:messages errorStyle="color:red" fatalStyle="color:gray" infoStyle="color:green" warnStyle="color:range" showDetail="true" globalOnly="true"/>
+		<h:messages errorStyle="color:red" fatalStyle="color:gray"
+			infoStyle="color:green" warnStyle="color:range" showDetail="true"
+			globalOnly="true" />
 		<h:commandLink value="Ajuda" action="help/help?faces-redirect=true" />
-		<br/>
-		<h:commandLink value="Ajuda Redirect Classe" action="#{catalogolivros.obterAjuda}" />
+		<br />
+		<h:commandLink value="Ajuda Redirect Classe"
+			action="#{catalogolivros.obterAjuda}" />
 		<h:panelGrid columns="2">
 			<h:column>
 				<h:outputLabel for="ipt_titulo" value="Titulo :" />
-				<h:inputText id="ipt_titulo" value="#{catalogolivros.livro.titulo}" size="40" title="Informe o Titulo" maxlength="40"/>
-				<h:message for="ipt_titulo" errorStyle="color:red" fatalStyle="color:gray" infoStyle="color:green" warnStyle="color:range" />
+				<h:inputText id="ipt_titulo" value="#{catalogolivros.livro.titulo}"
+					size="40" title="Informe o Titulo" maxlength="40" />
+				<h:message for="ipt_titulo" errorStyle="color:red"
+					fatalStyle="color:gray" infoStyle="color:green"
+					warnStyle="color:range" />
 			</h:column>
 
-			<br/>
+			<br />
 			<h:column>
 				<h:outputLabel for="ipt_autor" value="Autor :" />
-				<h:inputText id="ipt_autor" value="#{catalogolivros.livro.autores}" size="40" title="Informe o Autor" maxlength="40"/>
-				<h:message for="ipt_autor" errorStyle="color:red" fatalStyle="color:gray" infoStyle="color:green" warnStyle="color:range" />
+				<h:inputText id="ipt_autor" value="#{catalogolivros.livro.autores}"
+					size="40" title="Informe o Autor" maxlength="40" />
+				<h:message for="ipt_autor" errorStyle="color:red"
+					fatalStyle="color:gray" infoStyle="color:green"
+					warnStyle="color:range" />
 			</h:column>
-			<br/>
+			<br />
 			<h:column>
 				<h:outputLabel for="ipt_assunto" value="Assunto :" />
-				<h:inputText id="ipt_assunto"	value="#{catalogolivros.livro.assuntos}" size="40" title="Informe o Assunto"/>
-								<h:message for="ipt_assunto" errorStyle="color:red" fatalStyle="color:gray" infoStyle="color:green" warnStyle="color:range" />
+				<h:inputText id="ipt_assunto"
+					value="#{catalogolivros.livro.assuntos}" size="40"
+					title="Informe o Assunto" />
+				<h:message for="ipt_assunto" errorStyle="color:red"
+					fatalStyle="color:gray" infoStyle="color:green"
+					warnStyle="color:range" />
 			</h:column>
-			<br/>
+			<br />
 			<h:column>
-				<h:commandButton id="cmb_gravar" action="#{catalogolivros.inserir}" actionListener="#{catalogolivros.logarAcoes}"
-					value="Gravar" />
-			
-			  <h:commandButton id="cmb_limpar" value="Limpar" action="#{catalogolivros.limpar}"/>
+				<h:commandButton id="cmb_gravar" action="#{catalogolivros.inserir}"
+					actionListener="#{catalogolivros.logarAcoes}" value="Gravar" />
+
+				<h:commandButton id="cmb_limpar" value="Limpar"
+					action="#{catalogolivros.limpar}" />
 			</h:column>
 		</h:panelGrid>
 
 	</h:form>
-	
+
 	<h:form>
-	  <h:outputLabel for="ipt_buscar_livro" value="Informe o Nome do Livro:"/>
-	  <h:inputText id="ipt_buscar_livro" value="#{catalogolivros.livroPesquisado}" 
-	  valueChangeListener="#{catalogolivros.buscarLivros}" onchange="submit()"/>
-	  <h:commandButton id="cmb_buscar_livro" value="Pesquisar" action="#{catalogolivros.buscarLivros}"/>
+		<h:outputLabel for="ipt_buscar_livro" value="Informe o Nome do Livro:" />
+		<h:inputText id="ipt_buscar_livro"
+			value="#{catalogolivros.livroPesquisado}"
+			valueChangeListener="#{catalogolivros.buscarLivros}"
+			onchange="submit()" />
+		<h:commandButton id="cmb_buscar_livro" value="Pesquisar"
+			action="#{catalogolivros.buscarLivros}" />
 	</h:form>
 	<h:form id="frm_lista_livros">
-		<h:dataTable id="dtt_lista_livros" var="livros" value="#{catalogolivros.livrosPesquisados}" rendered="#{not empty catalogolivros.livrosPesquisados}" 
-		border="2" 	cellpadding="3" cellspacing="2">
+		<h:dataTable id="dtt_lista_livros" var="livros"
+			value="#{catalogolivros.livrosPesquisados}"
+			rendered="#{not empty catalogolivros.livrosPesquisados}" border="2"
+			cellpadding="3" cellspacing="2">
 			<h:column>
 				<f:facet name="header">
 					<h:outputText value="Titulo" />
@@ -74,7 +93,8 @@
 				<f:facet name="header">
 					<h:outputText value="Excluir" />
 				</f:facet>
-				<h:commandLink id="cml_excluir" value="Excluir" action="#{catalogolivros.excluir}"
+				<h:commandLink id="cml_excluir" value="Excluir"
+					action="#{catalogolivros.excluir}"
 					actionListener="#{catalogolivros.logarAcoes}">
 					<f:setPropertyActionListener value="#{livros}"
 						target="#{catalogolivros.livroSelecionado}">
@@ -83,28 +103,28 @@
 			</h:column>
 		</h:dataTable>
 	</h:form>
-	
+
 	<h:form id="frm_lista_logs">
-		<h:dataTable id="dtt_logs" var="logs" border="2" title="Logs" cellpadding="3" cellspacing="2"
-			value="#{catalogolivros.listLogs}"
+		<h:dataTable id="dtt_logs" var="logs" border="2" title="Logs"
+			cellpadding="3" cellspacing="2" value="#{catalogolivros.listLogs}"
 			rendered="#{not empty catalogolivros.listLogs }">
 			<h:column>
 				<f:facet name="header">
-					<h:outputText value="Data Evento"/>
+					<h:outputText value="Data Evento" />
 				</f:facet>
-				<h:outputText value="#{logs.dataEvento}"/>
+				<h:outputText value="#{logs.dataEvento}" />
 			</h:column>
 			<h:column>
 				<f:facet name="header">
-					<h:outputText value="Componente Utilizado"/>
+					<h:outputText value="Componente Utilizado" />
 				</f:facet>
-				<h:outputText value="#{logs.metodo}"/>
+				<h:outputText value="#{logs.metodo}" />
 			</h:column>
 			<h:column>
 				<f:facet name="header">
-					<h:outputText value="Componente"/>
+					<h:outputText value="Componente" />
 				</f:facet>
-				<h:outputText value="#{logs.componente}"/>
+				<h:outputText value="#{logs.componente}" />
 			</h:column>
 		</h:dataTable>
 	</h:form>
