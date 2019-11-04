@@ -10,40 +10,74 @@
 </h:head>
 <h:body>
 	<h:form id="frm_estoque">
-		<h:messages id="msg_geral"  showDetail="true"
-			showSummary="true" errorStyle="color:red"  fatalStyle="color:purple" warnStyle="color:orange" infoStyle="color:green"  />
-		<h:panelGrid id="pngrid_estoque" columns="2">
+		<h:messages id="msg_geral" showDetail="true" showSummary="true"
+			errorStyle="color:red" fatalStyle="color:red"
+			warnStyle="color:orange" infoStyle="color:green" />
+		<h:panelGrid id="pngrid_estoque" columns="2" bgcolor="red">
 			<h:outputLabel value="Codigo Produto:" />
 			<h:panelGroup>
-				<h:inputText id="ipt_codigo" value="#{estoqueBean.item.codigoProduto}" />
-				<h:message for="ipt_codigo" showSummary="true" showDetail="true"
-					errorStyle="color:red" fatalStyle="color:purple"
-					infoStyle="color:yellow" warnStyle="color:blue" />
+				<h:inputText id="ipt_codigo"
+					value="#{estoqueBean.item.codigoProduto}" />
+				<!-- 				<h:message for="ipt_codigo" showSummary="true" showDetail="true" -->
+				<!-- 					errorStyle="color:red" fatalStyle="color:purple" -->
+				<!-- 					infoStyle="color:yellow" warnStyle="color:blue" /> -->
 			</h:panelGroup>
 			<h:outputLabel value="Descrição:" />
-			<h:inputText id="ipt_descricao"	value="#{estoqueBean.item.descricaoProduto}" />
+			<h:inputText id="ipt_descricao"
+				value="#{estoqueBean.item.descricaoProduto}" />
 			<h:outputLabel value="Quantidade:" />
 			<h:panelGroup>
-				<h:inputText id="ipt_quantidade" value="#{estoqueBean.item.quantidade}" />
-				<h:message for="ipt_quantidade" showSummary="true" showDetail="false"></h:message>
+				<h:inputText id="ipt_quantidade"
+					value="#{estoqueBean.item.quantidade}" />
+				<!-- 				<h:message for="ipt_quantidade" showSummary="true" showDetail="false"></h:message> -->
 			</h:panelGroup>
 			<h:outputLabel value="Valor Unitario:" />
 			<h:panelGroup>
-				<h:inputText id="ipt_valor" value="#{estoqueBean.item.valorUnitario}" />
-				<h:message for="ipt_valor" showSummary="true" showDetail="true" />
+				<h:inputText id="ipt_valor"
+					value="#{estoqueBean.item.valorUnitario}" />
+				<!-- 				<h:message for="ipt_valor" showSummary="true" showDetail="true" /> -->
 			</h:panelGroup>
 			<h:outputLabel value="Data Checagem:" />
 			<h:panelGroup>
 				<h:inputText id="ipt_data_checagem"
-					value="#{estoqueBean.item.dataChecagem}" >
-					<f:convertDateTime for="ipt_data_checagem" type="date" locale="pt_BR" dateStyle="medium" timeStyle="medium"	pattern="dd/MM/yyyy" />
+					value="#{estoqueBean.item.dataChecagem}">
+					<f:convertDateTime for="ipt_data_checagem" type="date"
+						locale="pt_BR" dateStyle="medium" timeStyle="medium"
+						pattern="dd/MM/yyyy" />
 				</h:inputText>
-				<h:message for="ipt_data_checagem" showSummary="true" showDetail="true" 
-				errorStyle="color:red" fatalStyle="color:purple" infoStyle="color:green" warnStyle="color:blue" />
+				<!-- 				<h:message for="ipt_data_checagem" showSummary="true" showDetail="true"  -->
+				<!-- 				errorStyle="color:red" fatalStyle="color:purple" infoStyle="color:green" warnStyle="color:blue" /> -->
 			</h:panelGroup>
 			<h:outputLabel />
 			<h:commandButton id="btn_incluir" value="Gravar" action="#{estoqueBean.gravar}" />
 		</h:panelGrid>
+
+		<h:dataTable id="dt_produtos" border="1"
+			value="#{estoqueBean.listaProdutos}" var="produtos" title="Produtos"
+			cellpadding="15">
+			<f:facet name="header">Lista Produtos</f:facet>
+			<h:column>
+				<f:facet name="header">ID</f:facet>
+				<h:outputText value="#{produtos.codigoProduto}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">DESCRIÇÃO</f:facet>
+				<h:outputText value="#{produtos.descricaoProduto}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">QTDE</f:facet>
+				<h:outputText value="#{produtos.quantidade}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">VALOR</f:facet>
+				<h:outputText value="#{produtos.valorUnitario}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">DATA CHECAGEM</f:facet>
+				<h:outputText value="#{produtos.dataChecagem}" />
+			</h:column>
+
+		</h:dataTable>
 	</h:form>
 </h:body>
 </html>
