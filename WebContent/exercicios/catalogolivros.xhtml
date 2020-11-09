@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Catalogo de Livros</title>
+</head>
+<body>
+	<h:form id="frm_catalogo_livros">
+
+		<h:panelGroup id="panelMessages"
+			rendered="#{catalogoLivros.showMessages}">
+			<h:messages errorStyle="color:red" fatalStyle="color:gray"
+				infoStyle="color:green" warnStyle="color:range" showDetail="true"
+				globalOnly="true" />
+		</h:panelGroup>
+
+		<h:commandLink value="Ajuda" action="/help/help?faces-redirect=true" />
+		<br />
+		<h:commandLink value="Ajuda Redirect a depender do cadastro de livro"
+			action="#{catalogolivros.obterAjuda}" />
+		<br></br>
+		<h:panelGrid columns="2">
+			<h:column>
+				<h:outputLabel for="ipt_titulo" value="Titulo :" />
+				<h:inputText id="ipt_titulo" value="#{catalogolivros.livro.titulo}"
+					size="40" title="Informe o Titulo" maxlength="40" />
+				<h:message for="ipt_titulo" errorStyle="color:red"
+					fatalStyle="color:gray" infoStyle="color:green"
+					warnStyle="color:range" />
+			</h:column>
+
+			<br />
+			<h:column>
+				<h:outputLabel for="ipt_autor" value="Autor :" />
+				<h:inputText id="ipt_autor" value="#{catalogolivros.livro.autores}"
+					size="40" title="Informe o Autor" maxlength="40" />
+				<h:message for="ipt_autor" errorStyle="color:red"
+					fatalStyle="color:gray" infoStyle="color:green"
+					warnStyle="color:range" />
+			</h:column>
+			<br />
+			<h:column>
+				<h:outputLabel for="ipt_assunto" value="Assunto :" />
+				<h:inputText id="ipt_assunto"
+					value="#{catalogolivros.livro.assuntos}" size="40"
+					title="Informe o Assunto" />
+				<h:message for="ipt_assunto" errorStyle="color:red"
+					fatalStyle="color:gray" infoStyle="color:green"
+					warnStyle="color:range" />
+			</h:column>
+			<br />
+			<h:column>
+				<h:commandButton id="cmb_gravar" action="#{catalogolivros.inserir}"
+					actionListener="#{catalogolivros.logarAcoes}" value="Gravar" />
+
+				<h:commandButton id="cmb_limpar" value="Limpar"
+					action="#{catalogolivros.limpar}" />
+
+				<h:commandButton value="Voltar para Tela Inicial"
+					action="welcome?faces-redirect=true" />
+
+				<h:commandButton value="Ajuda"
+					action="#{catalogolivros.obterAjuda}" />
+			</h:column>
+		</h:panelGrid>
+
+	</h:form>
+
+	<h:form>
+		<h:outputLabel for="ipt_buscar_livro" value="Informe o Nome do Livro:" />
+		<h:inputText id="ipt_buscar_livro"
+			value="#{catalogolivros.livroPesquisado}"
+			valueChangeListener="#{catalogolivros.buscarLivros}"
+			onchange="submit()" />
+
+	</h:form>
+
+	<h:form id="frm_lista_livros">
+		<h:dataTable id="dtt_lista_livros" var="livros"
+			value="#{catalogolivros.livrosPesquisados}"
+			rendered="#{not empty catalogolivros.livrosPesquisados}" border="2"
+			cellpadding="3" cellspacing="2">
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Titulo" />
+				</f:facet>
+				<h:outputText value="#{livros.titulo}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Autor" />
+				</f:facet>
+				<h:outputText value="#{livros.autores}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Assuntos" />
+				</f:facet>
+				<h:outputText value="#{livros.assuntos}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Excluir" />
+				</f:facet>
+				<h:commandLink id="cml_excluir" value="Excluir"
+					action="#{catalogolivros.excluir}"
+					actionListener="#{catalogolivros.logarAcoes}">
+					<f:setPropertyActionListener value="#{livros}"
+						target="#{catalogolivros.livroSelecionado}">
+					</f:setPropertyActionListener>
+				</h:commandLink>
+			</h:column>
+		</h:dataTable>
+	</h:form>
+</body>
+</html>

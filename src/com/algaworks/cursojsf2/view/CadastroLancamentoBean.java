@@ -11,6 +11,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
+
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
 
@@ -45,32 +46,12 @@ public class CadastroLancamentoBean implements Serializable {
 	@PostConstruct
 	private void init() {  
        Session session = HibernateUtil.getSession();		   
-       this.pessoas=session.createCriteria(Pessoas.class).addOrder(Order.asc("nome")).list();
+       this.setPessoas(session.createCriteria(Pessoas.class).addOrder(Order.asc("nome")).list());
        session.close();     
     		   
 	}
 
-	// Retorna arrays de enu
-	public TipoLancamento[] getTipoLancamentos() {
-		return TipoLancamento.values();
-
-	}
-
-	// variavel que receberá os valores de cada lançamento / objeto lancamento
-	public Lancamentos getLancamento() {
-		return lancamento;
-	}
-
-	// variavel para trazer a lista de pessoas
-	public List<Pessoas> getGestaoPessoas() {
-		return gestaoPessoas.listarPessoas();
-	}
-
-	// variavel para trazer a lista de lancamentos ArrayList
-	public List<Lancamentos> getLancamentos() {
-		return lancamentos;
-	}
-
+	
 	public void gravar() {
 		try {
 			lancamentos.add(lancamento);
@@ -87,5 +68,35 @@ public class CadastroLancamentoBean implements Serializable {
 		message = new FacesMessage(severity, summary, detail);// Classe que trata as mensagens de erros
 		context.addMessage(clientId, message);
 	}
+	
+	// Retorna arrays de enu
+		public TipoLancamento[] getTipoLancamentos() {
+			return TipoLancamento.values();
+
+		}
+
+		// variavel que receberá os valores de cada lançamento / objeto lancamento
+		public Lancamentos getLancamento() {
+			return lancamento;
+		}
+
+		// variavel para trazer a lista de pessoas
+		public List<Pessoas> getGestaoPessoas() {
+			return gestaoPessoas.listarPessoas();
+		}
+
+		// variavel para trazer a lista de lancamentos ArrayList
+		public List<Lancamentos> getLancamentos() {
+			return lancamentos;
+		}
+
+		public List<Pessoas> getPessoas() {
+			return pessoas;
+		}
+
+		public void setPessoas(List<Pessoas> pessoas) {
+			this.pessoas = pessoas;
+		}
+
 
 }

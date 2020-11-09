@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Eventos de Mudança de Valor</title>
+</h:head>
+<h:body>
+	<h:form id="frmCadastroProdutos">
+
+		<div id="mensagens">
+			<h:messages id="mensagensGerais" errorStyle="color:red"
+				infoStyle="color:green" fatalStyle="color:gray"
+				warnStyle="color:orange" showDetail="true" showSummary="true" />
+		</div>
+
+		<div id="cadastro">
+			<h:panelGroup id="pnGroupCadastroProdutos">
+				<h:panelGrid id="pnGridCadastroProdutos" border="1" columns="2">
+						
+                   Nome: <h:inputText
+						value="#{mudancaValorComponente.produto.nome}" />                   				
+                   Fabricante: <h:inputText
+						value="#{mudancaValorComponente.produto.fabricante}" />                   			
+                   Categoria: <h:inputText
+						value="#{mudancaValorComponente.produto.categoria}" />
+
+					<h:commandButton id="cmb_include" value="Incluir"
+						action="#{mudancaValorComponente.incluir}"
+						actionListener="#{mudancaValorComponente.logarAcoes}" />
+
+					<h:commandButton id="cmb_clean" value="Limpar"
+						action="#{mudancaValorComponente.clean}"
+						actionListener="#{mudancaValorComponente.logarAcoes}" />
+					<!-- Evento de mudança de ação Action exige um ActionEvent no metodo-->
+
+					<h:commandLink id="cmb_ajuda" value="Ajuda"
+						action="help/help_gestao_produtos?faces-redirect=true">
+						<f:actionListener binding="#{registroCliqueBotaoListener}" />
+					</h:commandLink>
+				</h:panelGrid>
+			</h:panelGroup>
+		</div>
+		<br></br>
+	</h:form>
+<br></br>
+	<h:form id="frmPesquisaFabricante">
+Pesquisa por Fabricante:
+       <h:inputText id="iptPesquisaFabricante"
+			value="#{mudancaValorComponente.fabricantePesquisado}"
+			valueChangeListener="#{mudancaValorComponente.fabricantePesquisaAlterado}"
+			onchange="submit()">
+		</h:inputText>
+		<br></br>
+		<h:dataTable id="dtTableListaProdutosFabricantesPesquisados"
+			border="2"
+			value="#{mudancaValorComponente.listProdutosFabricantesFiltrados}"
+			var="produtosFabricantes"
+			rendered="#{not empty mudancaValorComponente.listProdutosFabricantesFiltrados}"
+			cellpadding="1" cellspacing="1">
+			<h:column>
+				<f:facet name="header">
+					<h:outputLabel value="Nome" />
+				</f:facet>
+				<h:outputText value="#{produtosFabricantes.nome}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputLabel value="Fabricante" />
+				</f:facet>
+				<h:outputText value="#{produtosFabricantes.fabricante}" />
+			</h:column>
+			<h:column >
+			  <f:facet name="header">
+			   <h:outputLabel value="Categoria"/>
+			  </f:facet>
+			  <h:outputText value="#{produtosFabricantes.categoria}"/>
+			</h:column>
+			<h:column>
+			  <f:facet name="header">
+			    <h:outputLabel value="Excluir?"/>
+			  </f:facet>
+			    <h:commandLink value="Excluir" action="#{mudancaValorComponente.excluir}">
+			      <f:setPropertyActionListener value="#{produtosFabricantes}" target="#{mudancaValorComponente.produtoSelecionado}">
+			      </f:setPropertyActionListener>
+			    </h:commandLink>
+			</h:column>
+		</h:dataTable>
+	</h:form>
+	<br></br>
+	<h:form id="pnGroupListaProdutos">
+		<h:dataTable id="dtTableListaProdutos" border="2"
+			rendered="#{not empty mudancaValorComponente.listProdutos}"
+			var="produtos" value="#{mudancaValorComponente.listProdutos}">
+			<h:column>
+				<f:facet name="header">
+					<h:outputLabel value="Nome" />
+				</f:facet>
+				<h:outputText value="#{produtos.nome}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputLabel value="Fabricante" />
+				</f:facet>
+				<h:outputText value="#{produtos.fabricante}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputLabel value="Categoria" />
+				</f:facet>
+				<h:outputText value="#{produtos.categoria}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputLabel value="Excluir" />
+				</f:facet>
+				<h:commandLink action="#{mudancaValorComponente.excluir}"
+					value="Excluir">
+					<f:setPropertyActionListener value="#{produtos}"
+						target="#{mudancaValorComponente.produtoSelecionado}">
+					</f:setPropertyActionListener>
+				</h:commandLink>
+			</h:column>
+		</h:dataTable>
+	</h:form>
+</h:body>
+</html>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Escopo Aplicação e SessãoGestãoProdutos</title>
+</head>
+<body>
+
+	<h:form id="frm_cadastro_produtos">
+
+		<h:panelGroup id="pngroup_cadastro_produtos">
+
+			<h:panelGrid id="pngrid_cadastro_produtos" border="1" columns="2">
+                   Nome: <h:inputText value="#{gestaoproduto.produto.nome}" />
+                   				
+                   Fabricante: <h:inputText	value="#{gestaoproduto.produto.fabricante}" />
+                   			
+                   Categoria: <h:inputText	value="#{gestaoproduto.produto.categoria}" />
+                   
+				<h:commandButton id="cmb_include" value="Incluir"
+				   action="#{gestaoproduto.incluir}"
+				   actionListener="#{gestaoproduto.logarAcoes}" />
+
+				<h:commandButton id="cmb_clean" value="Limpar"
+				   action="#{gestaoproduto.clean}"
+				   actionListener="#{gestaoproduto.logarAcoes}" />
+				<!-- Evento de mudança de ação Action Listener xige um ActionEvent no metodo-->
+
+				<h:commandButton id="cmb_ajuda" value="Ajuda"
+					action="help/help_gestao_produtos?faces-redirect=true">
+					<f:actionListener binding="#{registroCliqueBotaoListener}" />
+				</h:commandButton>
+
+
+			</h:panelGrid>
+		</h:panelGroup>
+	</h:form>
+	<br />
+
+	<h:form id="frm_pesquisar_produtos">
+		<h:panelGrid columns="1">
+			<h:panelGroup>
+				<!-- propriedade valueChangeListener faz um link/amarração com metodo que será chamado quando  
+				    houver modificações de valor no campo inputext   -->
+				<h:outputLabel value="Pesquisar Por Fabricante:"
+					for="opt_pesquisar_fabricante" />
+				<br></br>
+
+				<h:inputText id="ipt_pesquisar_produto"
+					value="#{gestaoproduto.produtoPesquisado}"
+					valueChangeListener="#{gestaoproduto.nomePesquisaAlterado}"
+					onchange="submit()" />
+				<!-- Evento de mudança de valor Value Change Listener  exige um ValueChangeEvent no metodo-->
+				<h:commandButton value="Pesquisar"
+					action="#{gestaoproduto.pesquisar}" />
+
+			</h:panelGroup>
+		</h:panelGrid>
+	</h:form>
+
+	<br />
+	<br />
+	<h:form id="frm_listar_produtos">
+		<h:dataTable var="produtos"
+			value="#{gestaoproduto.listProdutos}"
+			rendered="#{not empty gestaoproduto.listProdutos}"
+			border="1" title="Lista de Produtos">
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Nome" />
+				</f:facet>
+				<h:outputText value="#{produtos.nome}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Fabricante" />
+				</f:facet>
+				<h:outputText value="#{produtos.fabricante}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Categoria" />
+				</f:facet>
+				<h:outputText value="#{produtos.categoria}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Excluir" />
+				</f:facet>
+				<h:commandButton id="cmb_excluir" action="#{gestaoproduto.excluir}"
+					value="Excluir" actionListener="#{gestaoproduto.logarAcoes}">
+					<f:setPropertyActionListener value="#{produtos}"
+						target="#{gestaoproduto.produtoSelecionado}" />
+				</h:commandButton>
+
+			</h:column>
+		</h:dataTable>
+	</h:form>
+	<br />
+	<br />
+	<br />
+	<br />
+	<h:form id="frm_lista_log">
+		<h:dataTable var="logs" value="#{gestaoproduto.listLogs}"
+			rendered="#{not empty gestaoproduto.listLogs}" border="1"
+			title="Lista Logs">
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Componente Utilizado" />
+				</f:facet>
+				<h:outputText value="#{logs.metodo}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Componente" />
+				</f:facet>
+				<h:outputText value="#{logs.componente}" />
+			</h:column>
+		</h:dataTable>
+	</h:form>
+
+
+</body>
+</html>

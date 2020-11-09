@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Navegação e Eventos</title>
+</h:head>
+<h:body>
+	<h:form id="frmCadastroLivros">
+		<div id="messages">
+			<h:messages id="mensagensGerais" errorStyle="color:red"
+				infoStyle="color:green" warnStyle="color:orange"
+				showDetail="#{catalogolivros.showDetail}" showSummary="true">
+
+			</h:messages>
+		</div>
+		<h:panelGrid columns="2">
+
+			<h:outputLabel id="optTitulo" for="iptTitulo" value="Titulo :" />
+			<h:inputText id="iptTitulo" value="#{catalogolivros.livro.titulo}" />
+
+			<h:outputLabel id="optAutor" for="iptAutor" value="Autor :" />
+			<h:inputText id="iptAutor" value="#{catalogolivros.livro.autores}" />
+
+			<h:outputLabel id="optAssunto" for="iptAssunto" value="Assunto :" />
+			<h:inputText id="iptAssunto" value="#{catalogolivros.livro.assuntos}" />
+
+			<h:commandButton value="Gravar" action="#{catalogolivros.inserir}" />
+
+		</h:panelGrid>
+	</h:form>
+	<h:form id="frmPesquisaLivros">
+	    <h:panelGrid  columns="2">
+	       <h:outputLabel id="oplBuscarLivros" value="Pesquisar Livros: " for="iptBuscarLivros"/>
+	       <h:inputText id="iptBuscarLivros" value="#{catalogolivros.livroPesquisado}" valueChangeListener="#{catalogolivros.buscarLivros}"
+	       onchange="submit()"/>
+	    </h:panelGrid>
+	    
+	    	<h:dataTable id="dtTableLivros" value="#{catalogolivros.livrosPesquisados}"
+			var="livrosPesquisados" cellpadding="1" cellspacing="1"
+			rendered="#{not empty catalogolivros.livrosPesquisados}" 
+			border="1">
+			<h:column>
+				<f:facet name="header">
+					<h:outputLabel value="Titulo" />
+				</f:facet>
+				<h:outputText value="#{livrosPesquisados.titulo}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputLabel value="Autores" />
+				</f:facet>
+				<h:outputText value="#{livrosPesquisados.autores}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputLabel value="Assuntos" />
+				</f:facet>
+				<h:outputText value="#{llivrosPesquisados.assuntos}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputLabel value="Excluir" />
+				</f:facet>
+				<h:commandLink value="Excluir" action="#{catalogolivros.excluir}">
+					<f:setPropertyActionListener value="#{livrosPesquisados}"
+						target="#{catalogolivros.livroSelecionado}">
+					</f:setPropertyActionListener>
+				</h:commandLink>
+			</h:column>
+		</h:dataTable>
+	</h:form>
+	<h:form id="frmListaLivros">
+		<h:dataTable id="dtTableLivros" value="#{catalogolivros.livrosList}"
+			var="livros" cellpadding="1" cellspacing="1"
+			rendered="#{not empty catalogolivros.livrosList}" 
+			border="1">
+			<h:column>
+				<f:facet name="header">
+					<h:outputLabel value="Titulo" />
+				</f:facet>
+				<h:outputText value="#{livros.titulo}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputLabel value="Autores" />
+				</f:facet>
+				<h:outputText value="#{livros.autores}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputLabel value="Assuntos" />
+				</f:facet>
+				<h:outputText value="#{livros.assuntos}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputLabel value="Excluir" />
+				</f:facet>
+				<h:commandLink value="Excluir" action="#{catalogolivros.excluir}">
+					<f:setPropertyActionListener value="#{livros}"
+						target="#{catalogolivros.livroSelecionado}">
+					</f:setPropertyActionListener>
+				</h:commandLink>
+			</h:column>
+		</h:dataTable>
+	</h:form>
+
+
+</h:body>
+</html>

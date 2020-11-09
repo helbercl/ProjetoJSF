@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<head>
+<title>Navegação Implicita</title>
+</head>
+<body>
+	<h:form id="frmNavegacaoImplicita">
+        <a href="">Ajuda Sobre a Tela</a><br></br>
+        <h:commandLink value="Ajuda Sobre a Tela - Command" action="help/help_gestao_produtos?faces-redirect=true"/>
+        
+		<h:panelGrid id="panelNavegacaoImplicita" border="1" columns="2">
+			<h:outputLabel id="labelNome" for="txtNome" value="Nome" />
+			<h:inputText id="txtNome" value="#{navegacaoImplicita.produto.nome}" />
+
+			<h:outputLabel id="labelFabricante" for="txtFabricante"
+				value="Fabricante" />
+			<h:inputText id="txtFabricante"
+				value="#{navegacaoImplicita.produto.fabricante}" />
+
+			<h:outputLabel id="labelCategoria" for="txtCategoria"
+				value="Categoria" />
+			<h:inputText id="txtCategoria"
+				value="#{navegacaoImplicita.produto.categoria}" />
+
+		</h:panelGrid>
+		<br />
+		<h:commandButton id="cmbGravar" action="#{navegacaoImplicita.inserir}"
+			value="Gravar" />
+	</h:form>
+     
+	<h:form id="frmNavegacaoImplicitaDataTable">
+		<h:dataTable var="item" value="#{navegacaoImplicita.produtoList}"
+			rendered="#{not empty navegacaoImplicita.produtoList}" border="2"
+			cellpadding="3" cellspacing="2">
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Nome" />
+				</f:facet>
+				<h:outputText value="#{item.nome}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Fabricante" />
+				</f:facet>
+				<h:outputText value="#{item.fabricante}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Categoria" />
+				</f:facet>
+				<h:outputText value="#{item.categoria}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Excluir" />
+				</f:facet>
+				<h:commandLink action="#{navegacaoImplicita.excluir}" value="Excluir">
+					<f:setPropertyActionListener value="#{item}"
+						target="#{navegacaoImplicita.produtoSelecionado}">
+					</f:setPropertyActionListener>
+				</h:commandLink>
+			</h:column>
+
+		</h:dataTable>
+
+	</h:form>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+	<h:head> 
+	   <title>Ola Mundo</title>
+	</h:head>
+	<h:body>
+	  <h:form>
+		  <h1>Ola Mundo</h1>
+		  <!-- Backing bean com amarração binding para controle dos componentes de tela-->				   
+	 Nome:<h:inputText value="#{olaMundoBean.nome}" binding="#{olaMundoBean.txtNome}"/><br/>
+		  <h:commandButton value="Clique Aqui" action="#{olaMundoBean.enviar}" binding="#{olaMundoBean.btnEnviar}"/>
+		  <h:commandButton value="Limpar" action="#{olaMundoBean.limpar}" binding="#{olaMundoBean.btnLimpar}"/>	<br/>	  
+	Nome Digitado:<h:outputLabel value="#{olaMundoBean.nome}" binding="#{olaMundoBean.optResultado}" /> 		  	  
+	   </h:form>
+	</h:body>
+</html>

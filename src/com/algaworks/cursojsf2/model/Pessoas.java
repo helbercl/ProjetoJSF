@@ -17,7 +17,7 @@ public class Pessoas implements Serializable {
 	private String nome;
 	
 	public Pessoas() {
-		// TODO Auto-generated constructor stub
+		
 	}
 	
 	public Pessoas(Integer codigo,String nome) {

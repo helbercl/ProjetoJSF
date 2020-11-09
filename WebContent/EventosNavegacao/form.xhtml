@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Eventos de Navegação</title>
+</h:head>
+<h:body>
+	<h:form id="frmCadastroProdutos">
+		<div id="mensagens">
+			<h:messages id="mensagensGerais" errorStyle="color:red"
+				infoStyle="color:green" fatalStyle="color:gray"
+				warnStyle="color:orange" showDetail="true" showSummary="true" />
+		</div>
+		<div id="cadastro">
+			<h:panelGroup id="pnGroupCadastroProdutos">
+				<h:panelGrid id="pnGridCadastroProdutos" border="1" columns="2">
+						
+                   Nome: <h:inputText
+						value="#{gestaoProduto.produto.nome}" />                   				
+                   Fabricante: <h:inputText
+						value="#{gestaoProduto.produto.fabricante}" />                   			
+                   Categoria: <h:inputText
+						value="#{gestaoProduto.produto.categoria}" />
+
+					<h:commandButton id="cmb_include" value="Incluir"
+						action="#{gestaoProduto.incluir}"
+						actionListener="#{gestaoProduto.logarAcoes}" />
+
+					<h:commandButton id="cmb_clean" value="Limpar"
+						action="#{gestaoProduto.clean}"
+						actionListener="#{gestaoProduto.logarAcoes}" />
+					<!-- Evento de mudança de ação Action exige um ActionEvent no metodo-->
+
+					<h:commandLink id="cmb_ajuda" value="Ajuda"
+						action="help/help_gestao_produtos?faces-redirect=true">
+						<f:actionListener binding="#{registroCliqueBotaoListener}" />
+					</h:commandLink>
+				</h:panelGrid>
+				<br></br>
+				<h:form id="pnGroupListaProdutos">
+					<h:dataTable id="dtTableListaProdutos" border="2"
+						rendered="#{not empty gestaoProduto.listProdutos}" var="produtos"
+						value="#{gestaoProduto.listProdutos}">
+						<h:column>
+							<f:facet name="header">
+								<h:outputLabel value="Nome" />
+							</f:facet>
+							<h:outputText value="#{produtos.nome}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputLabel value="Fabricante" />
+							</f:facet>
+							<h:outputText value="#{produtos.fabricante}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputLabel value="Categoria" />
+							</f:facet>
+							<h:outputText value="#{produtos.categoria}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputLabel value="Excluir" />
+							</f:facet>
+							<h:commandLink action="#{gestaoProduto.excluir}" value="Excluir">
+								<f:setPropertyActionListener value="#{produtos}"
+									target="#{gestaoProduto.produtoSelecionado}">
+								</f:setPropertyActionListener>
+							</h:commandLink>
+						</h:column>
+					</h:dataTable>
+				</h:form>
+			</h:panelGroup>
+		</div>
+	</h:form>
+</h:body>
+</html>

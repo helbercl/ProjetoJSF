@@ -10,22 +10,21 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
-//import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
-//import javax.faces.bean.NoneScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.ValueChangeEvent;
 
 import com.algaworks.cursojsf2.model.Livros;
+import com.algaworks.cursojsf2.util.Mensagens;
 
 @ManagedBean(name = "catalogolivros")
-//@RequestScoped
+// @RequestScoped
 @SessionScoped
-//@ViewScoped
-//@ApplicationScoped
-//@NoneScoped
+// @ViewScoped
+// @ApplicationScoped
+// @NoneScoped
 
 public class CatalogoLivrosBean implements Serializable {
 
@@ -34,19 +33,23 @@ public class CatalogoLivrosBean implements Serializable {
 	private Livros livroSelecionado;
 	private String livroPesquisado;
 	private Log log;
-	private List<Livros> listLivros;
-	private List<Log> listLogs;
+	private List<Livros> livrosList;
+	private List<Log> logsList;
 	private List<Livros> livrosPesquisados;
+	private boolean showDetail;
 
 	public CatalogoLivrosBean() {
 		this.livro = new Livros();
-		this.listLivros = new ArrayList<Livros>();
-		this.listLogs = new ArrayList<Log>();
-		log = new Log();
-		livrosPesquisados = new ArrayList<Livros>();
+		this.livrosList = new ArrayList<Livros>();
+		this.logsList = new ArrayList<Log>();
+		this.log = new Log();
+		this.livrosPesquisados = new ArrayList<Livros>();
+		this.showDetail = false;
+		this.livroPesquisado=null;
 	}
 
 	private void validarCadastro() {
+
 		try {
 			if ("".equals(this.livro.getTitulo()) || this.livro.getTitulo() == null) {
 				// this.livro.setTitulo("Titulo Não informado");
@@ -55,61 +58,91 @@ public class CatalogoLivrosBean implements Serializable {
 			}
 			if ("".equals(this.livro.getAutores()) || this.livro.getAutores() == null) {
 				// this.livro.setAutores("Autor Não Informado");
-				this.adicionarMensagens("frm_catalogo_livros:ipt_autor", FacesMessage.SEVERITY_INFO, "Autor Não Informado!", "Favor, informar o autor do livro!");
+				this.adicionarMensagens("frm_catalogo_livros:ipt_autor", FacesMessage.SEVERITY_INFO,
+						"Autor Não Informado!", "Favor, informar o autor do livro!");
 			}
-			if ("".equals(this.livro.getAssuntos()) || this.livro.getAssuntos()==null) {
-				//this.livro.setAssuntos("Assunto Não Informado");
-				this.adicionarMensagens("frm_catalogo_livros:ipt_assunto", FacesMessage.SEVERITY_INFO, "Assunto Não Informado", "Favor, informar o assunto do livro");
+			if ("".equals(this.livro.getAssuntos()) || this.livro.getAssuntos() == null) {
+				// this.livro.setAssuntos("Assunto Não Informado");
+				this.adicionarMensagens("frm_catalogo_livros:ipt_assunto", FacesMessage.SEVERITY_INFO,
+						"Assunto Não Informado", "Favor, informar o assunto do livro");
 			}
 
 		} catch (Exception e) {
+			showDetail = true;
 			this.adicionarMensagens(null, FacesMessage.SEVERITY_ERROR, e.getMessage(), e.getLocalizedMessage());
+
 		}
 
 	}
 
 	public void inserir() {
-		validarCadastro();
-		FacesContext context = FacesContext.getCurrentInstance();
-		if (!context.getMessages().hasNext()) {
-			this.listLivros.add(this.livro);
-			this.adicionarMensagens(null, FacesMessage.SEVERITY_INFO,"Inserido com Sucesso!", "Cadastro Realizado com Sucesso!");
+		try {
+			validarCadastro();
+			FacesContext context = FacesContext.getCurrentInstance();
+			if (!context.getMessages().hasNext()) {
+				this.livrosList.add(this.livro);
+				this.adicionarMensagens(null, FacesMessage.SEVERITY_INFO, "Inserido com Sucesso!",
+						"Cadastro Realizado com Sucesso!");
+			}
+			this.livro = new Livros();
+			this.livroPesquisado=null;
+		} catch (Exception e) {
+			showDetail = true;
+			Mensagens.adicionarMensagens(null, FacesMessage.SEVERITY_ERROR, "Não foi possivel Excluir", "Erro: "+e.getMessage());
 		}
-		
+
 	}
 
 	public void excluir() {
-		this.listLivros.remove(this.livroSelecionado);
+		try {
+			this.livrosList.remove(this.livroSelecionado);
+			Mensagens.adicionarMensagens(null, FacesMessage.SEVERITY_INFO, "Excluido com Sucesso!",
+					"Cadastro Excluido com Sucesso!");
+			this.livro = new Livros();
+			this.livroPesquisado=null;
+		} catch (Exception e) {
+			showDetail = true;
+			Mensagens.adicionarMensagens(null, FacesMessage.SEVERITY_ERROR, "Erro: Não foi possivel excluir!",
+					"Erro:" + e.getMessage());
+			
+		} finally {
+
+		}
+
 	}
 
 	public void limpar() {
 		this.livro = new Livros();
+		this.livroPesquisado=null;
 	}
 
 	public void buscarLivros(ValueChangeEvent event) {
+		this.livroPesquisado=event.getNewValue().toString().toLowerCase();
+		System.out.println(this.livroPesquisado);
 		this.livrosPesquisados.clear();
-		for (Livros livros : listLivros) {
-			if (livros.getTitulo() != null
-					&& livros.getTitulo().toLowerCase().startsWith(event.getNewValue().toString().toLowerCase())) {
+		for (Livros livros : livrosList) {
+			if (!"".equalsIgnoreCase(livros.getTitulo()) && livros.getTitulo() != null
+					&& livros.getTitulo().toLowerCase().startsWith(livroPesquisado)) {
 				livrosPesquisados.add(livros);
-			}
+			} 
 		}
+		this.livroPesquisado=null;
 	}
 
 	public void logarAcoes(ActionEvent event) {
 		log.setDataEvento(new Date());
 		log.setMetodo(event.getComponent().getId());
 		log.setComponente(event.getComponent().toString());
-		listLogs.add(log);
+		logsList.add(log);
 		this.log = new Log();
 		System.out.println(event.getComponent().getNamingContainer());
 	}
 
 	public String obterAjuda() {
-		if (this.listLivros.isEmpty()) {
-			return "help/help?faces-redirect=true";
+		if (this.livrosList.isEmpty()) {
+			return "/help/help?faces-redirect=true";
 		} else {
-			return "help/help_phone?faces-redirect=true";
+			return "/help/help_phone?faces-redirect=true";
 		}
 
 	}
@@ -118,6 +151,7 @@ public class CatalogoLivrosBean implements Serializable {
 		FacesContext context = FacesContext.getCurrentInstance();
 		FacesMessage message = new FacesMessage(severity, summary, detail);
 		context.addMessage(clientId, message);
+
 	}
 
 	@PostConstruct
@@ -138,20 +172,20 @@ public class CatalogoLivrosBean implements Serializable {
 		this.livro = livro;
 	}
 
-	public List<Livros> getLivros() {
-		return listLivros;
-	}
-
-	public void setLivros(List<Livros> livros) {
-		this.listLivros = livros;
-	}
-
 	public Livros getLivroSelecionado() {
 		return livroSelecionado;
 	}
 
 	public void setLivroSelecionado(Livros livroSelecionado) {
 		this.livroSelecionado = livroSelecionado;
+	}
+
+	public String getLivroPesquisado() {
+		return livroPesquisado;
+	}
+
+	public void setLivroPesquisado(String livroPesquisado) {
+		this.livroPesquisado = livroPesquisado;
 	}
 
 	public Log getLog() {
@@ -162,20 +196,20 @@ public class CatalogoLivrosBean implements Serializable {
 		this.log = log;
 	}
 
-	public List<Log> getListLogs() {
-		return listLogs;
+	public List<Livros> getLivrosList() {
+		return livrosList;
 	}
 
-	public void setListLogs(List<Log> listLogs) {
-		this.listLogs = listLogs;
+	public void setLivrosList(List<Livros> livrosList) {
+		this.livrosList = livrosList;
 	}
 
-	public List<Livros> getListLivros() {
-		return listLivros;
+	public List<Log> getLogsList() {
+		return logsList;
 	}
 
-	public void setListLivros(List<Livros> listLivros) {
-		this.listLivros = listLivros;
+	public void setLogsList(List<Log> logsList) {
+		this.logsList = logsList;
 	}
 
 	public List<Livros> getLivrosPesquisados() {
@@ -186,11 +220,19 @@ public class CatalogoLivrosBean implements Serializable {
 		this.livrosPesquisados = livrosPesquisados;
 	}
 
-	public String getLivroPesquisado() {
-		return livroPesquisado;
+	/**
+	 * @return the showDetail
+	 */
+	public boolean isShowDetail() {
+		return showDetail;
 	}
 
-	public void setLivroPesquisado(String livroPesquisado) {
-		this.livroPesquisado = livroPesquisado;
+	/**
+	 * @param showDetail
+	 *            the showDetail to set
+	 */
+	public void setShowDetail(boolean showDetail) {
+		this.showDetail = showDetail;
 	}
+
 }

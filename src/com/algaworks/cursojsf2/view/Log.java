@@ -9,6 +9,7 @@ public class Log implements Serializable {
 	private String metodo;
 	private Date dataEvento;
 	private String componente;
+	private String idComponente;
 
 	public String getMetodo() {
 		return metodo;
@@ -27,6 +28,12 @@ public class Log implements Serializable {
 	}
 	public void setComponente(String componente) {
 		this.componente = componente;
+	}
+	public String getIdComponente() {
+		return idComponente;
+	}
+	public void setIdComponente(String string) {
+		this.idComponente = string;
 	}
 
 }
